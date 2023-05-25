@@ -40,3 +40,21 @@ if my_upload is not None:
     fix_image(upload=my_upload)
 else:
     fix_image("./zebra.jpg")
+
+carat = st.number_input('Carat Weight:', min_value=0.1, max_value=10.0, value=1.0)
+
+cut = st.selectbox('Cut Rating:', ['Fair', 'Good', 'Very Good', 'Premium', 'Ideal'])
+
+color = st.selectbox('Color Rating:', ['J', 'I', 'H', 'G', 'F', 'E', 'D'])
+
+clarity = st.selectbox('Clarity Rating:', ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF'])
+
+depth = st.number_input('Diamond Depth Percentage:', min_value=0.1, max_value=100.0, value=1.0)
+
+table = st.number_input('Diamond Table Percentage:', min_value=0.1, max_value=100.0, value=1.0)
+
+x = st.number_input('Diamond Length (X) in mm:', min_value=0.1, max_value=100.0, value=1.0)
+
+y = st.number_input('Diamond Width (Y) in mm:', min_value=0.1, max_value=100.0, value=1.0)
+
+z = st.number_input('Diamond Height (Z) in mm:', min_value=0.1, max_value=100.0, value=1.0)
