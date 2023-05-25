@@ -14,20 +14,3 @@ from knowledge_gpt.utils import (
     wrap_text_in_html,
 )
 
-
-def clear_submit():
-    st.session_state["submit"] = False
-
-
-st.set_page_config(page_title="KnowledgeGPT", page_icon="📖", layout="wide")
-st.header("📖KnowledgeGPT")
-
-sidebar()
-
-uploaded_file = st.file_uploader(
-    "Upload a pdf, docx, or txt file",
-    type=["pdf", "docx", "txt"],
-    help="Scanned documents are not supported yet!",
-    on_change=clear_submit,
-)
-
