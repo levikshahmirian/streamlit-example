@@ -1,5 +1,5 @@
 import streamlit as st
-from openai.error import OpenAIError
+#from openai.error import OpenAIError
 
 from knowledge_gpt.components.sidebar import sidebar
 from knowledge_gpt.utils import (
