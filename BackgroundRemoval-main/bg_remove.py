@@ -5,7 +5,7 @@ from io import BytesIO
 import base64
 import numpy
 import joblib
-import pickle
+import keras
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
@@ -54,8 +54,8 @@ my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["pkl"])
 
 if my_upload1 is not None:
     #load saved model
-    xgb = joblib.load(my_upload1)
-    
+    #xgb = joblib.load(my_upload1)
+    model=keras.models.load_model(my_upload1)
 
 
 
