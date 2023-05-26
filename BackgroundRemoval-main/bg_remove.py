@@ -8,7 +8,7 @@ import base64
 import joblib
 
 #load saved model
-xgb = joblib.load('BackgroundRemoval-main/model.json')
+xgb = joblib.load('/app/streamlit-example/BackgroundRemoval-main/model.json')
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
@@ -45,5 +45,5 @@ my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jp
 if my_upload is not None:
     fix_image(upload=my_upload)
 else:
-    fix_image("https://vscode.dev/github/levikshahmirian/streamlit-example/blob/master/BackgroundRemoval-main/zebra.jpg")
+    fix_image("/app/streamlit-example/BackgroundRemoval-main/zebra.jpg")
 
