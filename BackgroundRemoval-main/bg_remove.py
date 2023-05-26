@@ -24,6 +24,11 @@ def convert_image(img):
     buf = BytesIO()
     img.save(buf, format="PNG")
     byte_im = buf.getvalue()
+
+    img = keras.utils.load_img(byte_im, target_size=(224, 224))
+    img = keras.utils.img_to_array(img)
+    
+    load_model(img)
     return byte_im
 
 
@@ -72,11 +77,6 @@ my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jp
 
 if my_upload is not None:
     #fix_image(upload=my_upload)
-    img = keras.utils.load_img(my_upload, target_size=(224, 224))
-    img = keras.utils.img_to_array(img)
-    
-    load_model(img)
-
     fix_image(my_upload)
 
 
