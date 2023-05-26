@@ -19,6 +19,19 @@ st.write(
     ":dog:Téléchargez une image de chien pour découvrir sa race. Des images de qualité complète peuvent être téléchargées à partir de la barre latérale. Special thanks to the [rembg library](https://github.com/danielgatis/rembg) :grin:"
 )
 st.sidebar.write("## Charger et télécharger :gear:")
+
+
+json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
+
+loaded_model_json = json_file.read()
+json_file.close()
+loaded_model = model_from_json(loaded_model_json)
+
+# load weights into new model
+loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
+print("Loaded model from disk")
+
+
 # Download the fixed image
 def convert_image(img):
     buf = BytesIO()
@@ -39,6 +52,20 @@ def fix_image(upload):
     st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
 
 
+
+#load model, set cache to prevent reloading
+@st.cache(allow_output_mutation=True)
+def load_model(img):
+
+    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
+    preds = loaded_model.predict(x)
+    _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
+    print(imagenet_class_name)
+    prob
+   
+
+
+
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
 
@@ -46,8 +73,8 @@ if my_upload is not None:
     #fix_image(upload=my_upload)
     img = keras.utils.load_img(my_upload, target_size=(224, 224))
     img = keras.utils.img_to_array(img)
-    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
-    load_model(x)
+    
+    load_model(img)
 
     fix_image(my_upload)
 
@@ -56,22 +83,6 @@ if my_upload is not None:
 
 
 
-#load model, set cache to prevent reloading
-@st.cache(allow_output_mutation=True)
-def load_model(x):
-    json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
 
-    loaded_model_json = json_file.read()
-    json_file.close()
-    loaded_model = model_from_json(loaded_model_json)
-
-    # load weights into new model
-    loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
-    print("Loaded model from disk")
-
-    preds = loaded_model.predict(x)
-    _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
-    print(imagenet_class_name)
-    prob
 
 
