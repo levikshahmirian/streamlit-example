@@ -31,6 +31,8 @@ def fix_image(upload):
     image = Image.open(upload)
     col1.write("Image Originale:camera:")
     col1.write(" ")
+    col1.write(" ")
+    col1.write(" ")
     col1.image(image)
 
     fixed = remove(image)
