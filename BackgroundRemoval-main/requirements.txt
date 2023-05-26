@@ -91,3 +91,4 @@ joblib==1.1.1
 torch
 torchvision
 keras
+tensorflow
