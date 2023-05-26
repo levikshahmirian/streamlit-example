@@ -64,8 +64,8 @@ my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jp
 
 if my_upload is not None:
     #fix_image(upload=my_upload)
-    img = image.load_img(my_upload, target_size=(224, 224))
-    img = image.img_to_array(img)
+    #img = image.load_img(my_upload, target_size=(224, 224))
+    img = image.img_to_array(my_upload)
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
 
 
