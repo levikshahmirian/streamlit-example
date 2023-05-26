@@ -90,3 +90,4 @@ zipp==3.10.0
 joblib==1.1.1
 torch
 torchvision
+keras
