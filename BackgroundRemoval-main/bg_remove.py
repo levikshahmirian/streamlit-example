@@ -30,10 +30,11 @@ def convert_image(img):
 def fix_image(upload):
     image = Image.open(upload)
     col1.write("Image Originale:camera:")
+    col1.write(" ")
     col1.image(image)
 
     fixed = remove(image)
-    col2.write("la race:wrench:")
+    #col2.write("la race:wrench:")
     col2.image(fixed)
     st.sidebar.markdown("\n")
     st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
