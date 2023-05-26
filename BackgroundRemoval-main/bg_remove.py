@@ -43,7 +43,7 @@ else:
 
 if my_upload1 is not None:
     #load saved model
-    xgb = joblib.load('my_upload1')
+    xgb = joblib.load(upload=my_upload1)
 
     st.set_page_config(layout="wide", page_title="Image Background Remover")
 
