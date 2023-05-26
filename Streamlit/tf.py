@@ -1,5 +1,5 @@
 import streamlit as st
-import tensorflow as tf
+
 from tensorflow import keras
 import requests
 import numpy as np
@@ -10,7 +10,7 @@ st.title("Image Classification")
 #load model, set cache to prevent reloading
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model=tf.keras.models.load_model('models/basic_model.h5')
+    model=keras.models.load_model('models/basic_model.h5')
     return model
 
 with st.spinner("Loading Model...."):
@@ -21,11 +21,11 @@ classes=["airplane","automobile","bird","cat","deer","dog","frog","horse","ship"
 
 # image preprocessing
 def load_image(image):
-    img=tf.image.decode_jpeg(image,channels=3)
-    img=tf.cast(img,tf.float32)
+    img=image.decode_jpeg(image,channels=3)
+    img=cast(img,tf.float32)
     img/=255.0
-    img=tf.image.resize(img,(28,28))
-    img=tf.expand_dims(img,axis=0)
+    img=image.resize(img,(28,28))
+    img=expand_dims(img,axis=0)
     return img
 
 #Get image URL from user
