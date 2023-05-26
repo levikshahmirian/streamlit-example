@@ -2,10 +2,13 @@ import streamlit as st
 from rembg import remove
 from PIL import Image
 from io import BytesIO
-import base64
+import base6
+import pickle
 
 
 import joblib
+
+pickled_model = pickle.load(open('model.pkl', 'rb'))
 
 #load saved model
 xgb = joblib.load('/app/streamlit-example/BackgroundRemoval-main/model.json')
