@@ -10,6 +10,7 @@ from keras.models import model_from_json
 from keras.models import load_model
 from keras.preprocessing import image
 from keras.applications.vgg16 import preprocess_input, decode_predictions
+from keras.utils import img_to_array,load_img
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
