@@ -6,12 +6,13 @@ import base64
 
 
 import joblib
+st.set_page_config(layout="wide", page_title="Image Background Remover")
 
-
-
-
-
-
+st.write("## Classez des images à l'aide d'algorithmes de Deep Learning")
+st.write(
+    ":dog:Téléchargez une image de chien pour découvrir sa race. Des images de qualité complète peuvent être téléchargées à partir de la barre latérale. Special thanks to the [rembg library](https://github.com/danielgatis/rembg) :grin:"
+)
+st.sidebar.write("## Charger et télécharger :gear:")
 # Download the fixed image
 def convert_image(img):
     buf = BytesIO()
@@ -44,14 +45,6 @@ else:
 if my_upload1 is not None:
     #load saved model
     xgb = joblib.load(upload=my_upload1)
-
-    st.set_page_config(layout="wide", page_title="Image Background Remover")
-
-    st.write("## Classez des images à l'aide d'algorithmes de Deep Learning")
-    st.write(
-        ":dog:Téléchargez une image de chien pour découvrir sa race. Des images de qualité complète peuvent être téléchargées à partir de la barre latérale. Special thanks to the [rembg library](https://github.com/danielgatis/rembg) :grin:"
-    )
-    st.sidebar.write("## Charger et télécharger :gear:")
 else:
     fix_image("/app/streamlit-example/BackgroundRemoval-main/zebra.jpg")
 
