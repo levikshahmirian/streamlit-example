@@ -90,7 +90,3 @@ zipp==3.10.0
 joblib==1.1.1
 torch==2.0.0
 torchvision==0.15
-spacy==3.4
-transformers==1
-en_core_web_sm==3.5.0
-streamlit==1.19
