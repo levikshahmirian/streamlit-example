@@ -60,8 +60,8 @@ def load_model(img):
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
     preds = loaded_model.predict(x)
     _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
-    print(imagenet_class_name)
-    prob
+    col2.image(imagenet_class_name)
+    col2.image(prob)
    
 
 
