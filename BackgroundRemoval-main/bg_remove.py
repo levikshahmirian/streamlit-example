@@ -6,6 +6,8 @@ import base64
 import numpy
 import joblib
 import keras
+from keras.models import model_from_json
+from keras.models import load_model
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
@@ -55,7 +57,20 @@ my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["json"])
 if my_upload1 is not None:
     #load saved model
     #xgb = joblib.load(my_upload1)
-    model=keras.models.load_model(my_upload1)
+    #model=keras.models.load_model(my_upload1)
+    # load json and create model
+    json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
+
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+
+    # load weights into new model
+    loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
+    print("Loaded model from disk")
+
+    loaded_model.save('model_num.hdf5')
+    loaded_model=load_model('model_num.hdf5')
 
 
 
