@@ -40,7 +40,7 @@ def fix_image(upload):
 
 def write_predict(prob,imagenet_class_name):
     col2.write("la race:wrench:  "+imagenet_class_name)
-    col2.write("la Probabilité   "+ prob)
+    col2.write("la Probabilité   "+ str(prob))
     
 
 #load model, set cache to prevent reloading
