@@ -5,7 +5,7 @@ from io import BytesIO
 import base64
 
 
-
+import joblib
 
 #load saved model
 xgb = joblib.load('model.json')
