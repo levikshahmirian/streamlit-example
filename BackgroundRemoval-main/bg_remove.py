@@ -44,7 +44,7 @@ def write_predict(prob,imagenet_class_name):
     
 
 #load model, set cache to prevent reloading
-@st.cache(allow_output_mutation=True)
+
 def load_model(img):
     json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
 
