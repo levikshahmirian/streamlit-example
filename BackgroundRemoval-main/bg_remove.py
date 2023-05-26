@@ -8,7 +8,7 @@ import base64
 import joblib
 
 #load saved model
-xgb = joblib.load('model')
+xgb = joblib.load('model.json')
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
