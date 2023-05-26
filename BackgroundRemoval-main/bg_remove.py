@@ -5,6 +5,7 @@ from io import BytesIO
 import base64
 import numpy
 import joblib
+import pickle 
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
@@ -35,11 +36,12 @@ def fix_image(upload):
 
 
 col1, col2 = st.columns(2)
-my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["json"])
+my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["pkl"])
 
 if my_upload1 is not None:
     #load saved model
-    xgb = joblib.load(my_upload1)
+    #xgb = joblib.load(my_upload1)
+    model = pickle.load(open(my_upload1,'rb'))
     
 
 
