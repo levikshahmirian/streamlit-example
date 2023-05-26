@@ -35,7 +35,7 @@ def fix_image(upload):
 
 
 col1, col2 = st.columns(2)
-my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["pkl"])
+my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["json"])
 
 if my_upload1 is not None:
     #load saved model
