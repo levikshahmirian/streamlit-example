@@ -92,4 +92,3 @@ torch
 torchvision
 keras
 tensorflow
-pickle
