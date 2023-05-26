@@ -35,18 +35,19 @@ def fix_image(upload):
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
-my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["json"])
 
 if my_upload is not None:
     fix_image(upload=my_upload)
 else:
     fix_image("/app/streamlit-example/BackgroundRemoval-main/zebra.jpg")
 
+
+col1, col2 = st.columns(2)
+my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["json"])
 if my_upload1 is not None:
     #load saved model
     xgb = joblib.load(upload=my_upload1)
-else:
-    fix_image("/app/streamlit-example/BackgroundRemoval-main/zebra.jpg")
+
 
 
 
