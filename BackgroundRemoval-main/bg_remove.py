@@ -19,8 +19,6 @@ st.write(
     ":dog:Téléchargez une image de chien pour découvrir sa race. Des images de qualité complète peuvent être téléchargées à partir de la barre latérale. Special thanks to the [rembg library](https://github.com/danielgatis/rembg) :grin:"
 )
 st.sidebar.write("## Charger et télécharger :gear:")
-
-
 # Download the fixed image
 def convert_image(img):
     buf = BytesIO()
@@ -46,17 +44,20 @@ def fix_image(upload):
 @st.cache(allow_output_mutation=True)
 def load_model(img):
     json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
+
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
 
     # load weights into new model
     loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
+    print("Loaded model from disk")
+
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
     preds = loaded_model.predict(x)
     _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
-    col2.image(imagenet_class_name)
-    col2.image(prob)
+    print(imagenet_class_name)
+    prob
    
 
 
