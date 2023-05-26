@@ -51,13 +51,12 @@ def load_model(img):
 
     # load weights into new model
     loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
-    print("Loaded model from disk")
+    #print("Loaded model from disk")
 
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
     preds = loaded_model.predict(x)
     _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
-    imagenet_class_name
-    prob
+  
    
 
 
