@@ -3,11 +3,13 @@ from rembg import remove
 from PIL import Image
 from io import BytesIO
 import base64
-import numpy
+import numpy as np
 import joblib
 import keras
 from keras.models import model_from_json
 from keras.models import load_model
+from keras.preprocessing import image
+from keras.applications.vgg16 import preprocess_input, decode_predictions
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
@@ -38,27 +40,6 @@ def fix_image(upload):
 #load model, set cache to prevent reloading
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model=tf.keras.models.load_model('models/basic_model.h5')
-    return model
-
-
-#col1, col2 = st.columns(2)
-#my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
-
-#if my_upload is not None:
-    #fix_image(upload=my_upload)
-#else:
-    #fix_image("/app/streamlit-example/BackgroundRemoval-main/zebra.jpg")
-
-
-col1, col2 = st.columns(2)
-my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["json"])
-
-if my_upload1 is not None:
-    #load saved model
-    #xgb = joblib.load(my_upload1)
-    #model=keras.models.load_model(my_upload1)
-    # load json and create model
     json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
 
     loaded_model_json = json_file.read()
@@ -68,6 +49,29 @@ if my_upload1 is not None:
     # load weights into new model
     loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
     print("Loaded model from disk")
+
+    preds = loaded_model.predict(x)
+    _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
+    print(imagenet_class_name)
+    prob
+
+
+
+
+col1, col2 = st.columns(2)
+my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
+
+if my_upload is not None:
+    #fix_image(upload=my_upload)
+    img = image.load_img(my_upload, target_size=(224, 224))
+    img = image.img_to_array(img)
+
+    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
+
+else:
+    #fix_image("/app/streamlit-example/BackgroundRemoval-main/zebra.jpg")
+
+
 
 
 
