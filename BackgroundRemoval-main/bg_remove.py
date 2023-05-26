@@ -39,6 +39,22 @@ def fix_image(upload):
     st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
 
 
+col1, col2 = st.columns(2)
+my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
+
+if my_upload is not None:
+    #fix_image(upload=my_upload)
+    img = keras.utils.load_img(my_upload, target_size=(224, 224))
+    img = keras.utils.img_to_array(img)
+    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
+    load_model(x)
+
+    fix_image(my_upload)
+
+
+
+
+
 
 #load model, set cache to prevent reloading
 @st.cache(allow_output_mutation=True)
@@ -57,27 +73,5 @@ def load_model(x):
     _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
     print(imagenet_class_name)
     prob
-   
-
-
-
-col1, col2 = st.columns(2)
-my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
-
-if my_upload is not None:
-    #fix_image(upload=my_upload)
-    img = keras.utils.load_img(my_upload, target_size=(224, 224))
-    img = keras.utils.img_to_array(img)
-    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
-    load_model(x)
-
-    fix_image(my_upload)
-
-
-
-
-
-
-
 
 
