@@ -38,9 +38,11 @@ def fix_image(upload):
     st.sidebar.markdown("\n")
     st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
 
+
+
 #load model, set cache to prevent reloading
 @st.cache(allow_output_mutation=True)
-def load_model():
+def load_model(x):
     json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
 
     loaded_model_json = json_file.read()
@@ -55,7 +57,7 @@ def load_model():
     _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
     print(imagenet_class_name)
     prob
-
+   
 
 
 
@@ -67,7 +69,9 @@ if my_upload is not None:
     img = keras.utils.load_img(my_upload, target_size=(224, 224))
     img = keras.utils.img_to_array(img)
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
+    load_model(x)
 
+    fix_image(my_upload)
 
 
 
