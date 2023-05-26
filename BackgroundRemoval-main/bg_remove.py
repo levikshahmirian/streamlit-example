@@ -22,7 +22,7 @@ st.sidebar.write("## Charger et télécharger :gear:")
 # Download the fixed image
 def convert_image(img):
     buf = BytesIO()
-    img.save(buf, format="PNG")
+    img.save(buf, format="jpg")
     byte_im = buf.getvalue()
     return byte_im
 
@@ -36,11 +36,6 @@ def fix_image(upload):
     col1.image(image)
 
     fixed = remove(image)
-
-    img = keras.utils.load_img(fixed, target_size=(224, 224))
-    img = keras.utils.img_to_array(img)
-    load_model(img)
-
     #col2.write("la race:wrench:")
     col2.image(fixed)
     st.sidebar.markdown("\n")
@@ -77,7 +72,10 @@ my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jp
 
 if my_upload is not None:
     #fix_image(upload=my_upload)
-
+    img = keras.utils.load_img(my_upload, target_size=(224, 224))
+    img = keras.utils.img_to_array(img)
+    
+    load_model(img)
 
     fix_image(my_upload)
 
