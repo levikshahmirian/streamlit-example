@@ -4,9 +4,8 @@ from PIL import Image
 from io import BytesIO
 import base64
 import numpy
-
-
 import joblib
+
 st.set_page_config(layout="wide", page_title="Image Background Remover")
 
 st.write("## Classez des images à l'aide d'algorithmes de Deep Learning")
@@ -48,7 +47,8 @@ my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["pkl"])
 
 if my_upload1 is not None:
     #load saved model
-    xgb = unpickler.load(my_upload1)
+    xgb = jublib.load(my_upload1)
+    
 
 
 
