@@ -3,6 +3,7 @@ from rembg import remove
 from PIL import Image
 from io import BytesIO
 import base64
+import numpy
 
 
 import joblib
@@ -47,7 +48,7 @@ my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["pkl"])
 
 if my_upload1 is not None:
     #load saved model
-    xgb = joblib.load(my_upload1)
+    xgb = unpickler.load(my_upload1)
 
 
 
