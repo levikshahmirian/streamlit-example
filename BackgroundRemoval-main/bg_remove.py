@@ -22,7 +22,7 @@ st.sidebar.write("## Charger et télécharger :gear:")
 # Download the fixed image
 def convert_image(img):
     buf = BytesIO()
-    img.save(buf, format="jpg")
+    img.save(buf, format="PNG")
     byte_im = buf.getvalue()
     return byte_im
 
