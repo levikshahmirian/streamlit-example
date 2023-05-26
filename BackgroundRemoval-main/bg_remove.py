@@ -5,7 +5,6 @@ from io import BytesIO
 import base64
 
 
-!ls import joblib
 
 
 #load saved model
