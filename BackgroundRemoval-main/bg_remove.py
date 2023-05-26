@@ -47,7 +47,7 @@ my_upload1 = st.sidebar.file_uploader("Télécharger une Model", type=["pkl"])
 
 if my_upload1 is not None:
     #load saved model
-    xgb = jublib.load(my_upload1)
+    xgb = joblib.load(my_upload1)
     
 
 
