@@ -38,7 +38,10 @@ def fix_image(upload):
     st.sidebar.markdown("\n")
     st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
 
-
+def write_predict(prob,imagenet_class_name):
+    col2.write("la race:wrench:  "+imagenet_class_name)
+    col2.write("la Probabilité   "+ prob)
+    
 
 #load model, set cache to prevent reloading
 @st.cache(allow_output_mutation=True)
@@ -56,7 +59,7 @@ def load_model(img):
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
     preds = loaded_model.predict(x)
     _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
-  
+    write_predict(prob,imagenet_class_name)
    
 
 
