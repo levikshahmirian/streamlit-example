@@ -69,8 +69,7 @@ if my_upload1 is not None:
     loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
     print("Loaded model from disk")
 
-    loaded_model.save('model_num.hdf5')
-    loaded_model=load_model('model_num.hdf5')
+
 
 
 
