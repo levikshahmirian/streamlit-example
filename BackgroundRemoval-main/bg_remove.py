@@ -33,6 +33,12 @@ def fix_image(upload):
     st.sidebar.markdown("\n")
     st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
 
+#load model, set cache to prevent reloading
+@st.cache(allow_output_mutation=True)
+def load_model():
+    model=tf.keras.models.load_model('models/basic_model.h5')
+    return model
+
 
 #col1, col2 = st.columns(2)
 #my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
