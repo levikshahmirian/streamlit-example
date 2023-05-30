@@ -1,3 +1,5 @@
 altair
 pandas
 streamlit
+api_snowflake
+api_openai
