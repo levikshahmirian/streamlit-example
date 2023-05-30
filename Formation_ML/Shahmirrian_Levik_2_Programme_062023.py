@@ -49,14 +49,14 @@ def write_predict(prob,imagenet_class_name):
 #load model, set cache to prevent reloading
 
 def load_model(img):
-    json_file = open('/app/streamlit-example/BackgroundRemoval-main/model_num.json', 'r')
+    json_file = open('/app/streamlit-example/Formation_ML/model_num.json', 'r')
 
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
 
     # load weights into new model
-    loaded_model.load_weights("/app/streamlit-example/BackgroundRemoval-main/model_num.h5")
+    loaded_model.load_weights("/app/streamlit-example/Formation_ML/model_num.h5")
     #print("Loaded model from disk")
 
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
