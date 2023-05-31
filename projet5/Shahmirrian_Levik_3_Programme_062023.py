@@ -16,17 +16,20 @@ st.sidebar.header("Please Filter Here:")
 
 city = st.sidebar.multiselect(
     "Select the City:",
-
+    options="City",
+    default="City",
 )
 
 customer_type = st.sidebar.multiselect(
     "Select the Customer Type:",
-
+    options="City",
+    default="City",
 )
 
 gender = st.sidebar.multiselect(
     "Select the Gender:",
-
+    options="City",
+    default="City",
 )
 
 
