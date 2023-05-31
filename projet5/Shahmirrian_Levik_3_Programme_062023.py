@@ -1,101 +1,210 @@
-import streamlit as st 
+import streamlit as st
+import pandas as pd
+import requests
+import snowflake.connector
+import json
+from urllib.error import URLError
+from streamlit_autorefresh import st_autorefresh
+from streamlit_elements import elements, mui, html, sync,editor, lazy,nivo
+import plotly.express as px  # pip install plotly-express
+import numpy as np 
+
+st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
 
-st.set_page_config(page_title="NYC Venue Search", layout="wide", initial_sidebar_state="expanded")
+# Function that fetch all data from snowflake table 
+def get_all_record_from_snowFlake():
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("select * from SUPER_MARKET_SALES.RECORDS.SALES_RECORDS")
+    return my_cur.fetchall()
 
-# UI text strings 
-page_title = "NYC Venue Search"
-page_helper = "Discover NYC! The Streamlit app uses cosine similarity to semantically match your query with Foursquare venue categories and find matching venues in your selected areas."
-empty_search_helper = "Select a borough and neighborhood, and enter a search term to get started."
-category_list_header = "Suggested venue categories"
-borough_search_header = "Select a borough"
-neighborhood_search_header = "Select (up to 5) neighborhoods"
-semantic_search_header = "What are you looking for?"
-semantic_search_placeholder = "Epic night out"
-search_label = "Search for categories and venues"
-venue_list_header = "Venue details"
+my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+my_data_rows= get_all_record_from_snowFlake()
+data = pd.DataFrame(my_data_rows)
+data.columns = ["Invoice ID","Branch","City","Customer_type","Gender","Product line","Unit price","Quantity","Tax 5%","Total","Date","Time","Payment","cogs","gross margin percentage","gross income","Rating"]
+json_list = json.loads(data.to_json(orient='records'))
+
+data["hour"] = pd.to_datetime(data["Time"]).dt.hour
+data["hour"] = data["hour"].astype(int)
+
+data["Invoice ID"] =data["Invoice ID"].astype(str)
+data["Branch"]=data["Branch"].astype(str)
+data["City"]=data["City"].astype(str)
+data["Customer_type"]=data["Customer_type"].astype(str)
+data["Gender"]=data["Gender"].astype(str)
+data["Product line"]=data["Product line"].astype(str)
+data["Unit price"]=data["Unit price"].astype(float)
+data["Quantity"]=data["Quantity"].astype(int)
+data["Tax 5%"]=data["Tax 5%"].astype(float)
+data["Total"]=data["Total"].astype(float)
+data["Payment"]=data["Payment"].astype(str)
+data["cogs"]=data["cogs"].astype(float)
+data["gross margin percentage"]=data["gross margin percentage"].astype(float)
+data["Rating"]=data["Rating"].astype(float)
 
 
-# Handler functions 
-def handler_load_neighborhoods():
+st.sidebar.image(
+            "https://mail.google.com/mail/u/0?ui=2&ik=f84a0aba7a&attid=0.1&permmsgid=msg-f:1751659840764464914&th=184f255830154f12&view=fimg&fur=ip&sz=s0-l75-ft&attbid=ANGjdJ9MhmfflXcF02tA97hulNBaLi8lPU9KhZ-nmoiOaK7jzKLWhvQKX0HntrVgz060igt8PIgAlq67QA1VcRGbTbgVepyHwed_J6PwrX71ytzrDgckUXZrOhjFepU&disp=emb",
+            width=200, # Manually Adjust the width of the image as per requirement
+        )
+st.sidebar.header("Please Filter Here:")
+
+st.markdown(
     """
-    Load neighborhoods for the selected borough and update session state.
-    """
-    selected_borough = 'Manhattan'
-    if "borough_selection" in st.session_state and st.session_state.borough_selection != "":
-        selected_borough = st.session_state.borough_selection
+<style>
+span[data-baseweb="tag"] {
+  background-color: #4b84ec !important;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
+city = st.sidebar.multiselect(
+    "Select the City:",
+    options=data["City"].unique(),
+    default=data["City"].unique(),
+)
+
+customer_type = st.sidebar.multiselect(
+    "Select the Customer Type:",
+    options=data["Customer_type"].unique(),
+    default=data["Customer_type"].unique(),
+)
+
+gender = st.sidebar.multiselect(
+    "Select the Gender:",
+    options=data["Gender"].unique(),
+    default=data["Gender"].unique()
+)
+
+df_selection = data.query(
+    "City == @city & Customer_type == @customer_type & Gender == @gender"
+)
+
+
+# ---- MAINPAGE ----
+st.title(":bar_chart: Market Sales Dashboard")
+st.markdown("##")
+
+# TOP KPI's
+
+total_sales = int(df_selection["Total"].astype(float).sum())
+average_rating = round(df_selection["Rating"].astype(float).mean(), 1)
+star_rating = ":star:" * int(round(average_rating, 0)) 
+
+average_sale_by_transaction = round(df_selection["Total"].astype(float).mean(), 2)
+
+left_column, middle_column, right_column = st.columns(3)
+with left_column:
+    st.subheader("Total Sales:")
+    st.subheader(f"US $ {total_sales:,}")
+with middle_column:
+    st.subheader("Average Rating:")
+    st.subheader(f"{average_rating} {star_rating}")
+with right_column:
+    st.subheader("Average Sales Per Transaction:")
+    st.subheader(f"US $ {average_sale_by_transaction}")
+
+
+st.markdown("##")
+
+
+df = st.dataframe(data)
+
+st.markdown("""---""")
+
+new_groupe = df_selection.groupby(by=["Product line"])
+
+# SALES BY PRODUCT LINE [BAR CHART]
+sales_by_product_line = (
+     new_groupe.aggregate(np.sum)[["Total"]].sort_values(by="Total")
+)
+fig_product_sales = px.bar(
+    sales_by_product_line,
+    x="Total",
+    y=sales_by_product_line.index,
+    orientation="h",
+    title="<b>Sales by Product Line</b>",
+    color_discrete_sequence=["#40E0D0"] * len(sales_by_product_line),
+    template="plotly_white",
+)
+fig_product_sales.update_layout(
+    plot_bgcolor="rgba(0,0,0,0)",
+    xaxis=(dict(showgrid=False))
+)
+
+# SALES BY HOUR [BAR CHART]
+sales_by_hour = df_selection.groupby(by=["hour"]).sum()[["Total"]]
+fig_hourly_sales = px.bar(
+    sales_by_hour,
+    x=sales_by_hour.index,
+    y="Total",
+    title="<b>Sales by hour</b>",
+    color_discrete_sequence=["#FF4500"] * len(sales_by_hour),
+    template="plotly_white",
+)
+fig_hourly_sales.update_layout(
+    xaxis=dict(tickmode="linear"),
+    plot_bgcolor="rgba(0,0,0,0)",
+    yaxis=(dict(showgrid=False)),
+)
+
+
+left_column, right_column = st.columns(2)
+left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
+right_column.plotly_chart(fig_product_sales, use_container_width=True)
+
+# SALES BY HOUR [line]
+sales_by_hour = df_selection.groupby(by=["hour"]).sum()[["Total"]]
+fig_hourly_sales = px.line(
+    sales_by_hour,
+    x=sales_by_hour.index,
+    y="Total",
+    title="<b>Sales by hour</b>",
+    color_discrete_sequence=["#4B0082"] * len(sales_by_hour),
     
-    
+)
+fig_hourly_sales.update_layout(
+    xaxis=dict(tickmode="linear"),
+    plot_bgcolor="rgba(0,0,0,0)",
+    yaxis=(dict(showgrid=False)),
+   
+)
+left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
 
-def handler_search_venues():
-    """
-    Search for venues based on user query and update session state with results.
-    """
-
-
-
-# UI elements 
-def render_cta_link(url, label, font_awesome_icon):
-    st.markdown('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">', unsafe_allow_html=True)
-    button_code = f'''<a href="{url}" target=_blank><i class="fa {font_awesome_icon}"></i> {label}</a>'''
-    return st.markdown(button_code, unsafe_allow_html=True)
-
-
-def render_search():
-    """
-    Render the search form in the sidebar.
-    """
-    search_disabled = True 
-    with st.sidebar:
-        st.selectbox(label=borough_search_header, options=([b['NAME'] for b in boroughs]), index = 2, key="borough_selection", on_change=handler_load_neighborhoods)
-
-        if "neighborhood_list" in st.session_state and len(st.session_state.neighborhood_list) > 0:
-            st.multiselect(label=neighborhood_search_header, options=(st.session_state.neighborhood_list), key="neighborhoods_selection", max_selections=5)
-
-        st.text_input(label=semantic_search_header, placeholder=semantic_search_placeholder, key="user_category_query")
-
-        if "borough_selection" in st.session_state and st.session_state.borough_selection != "" \
-            and "neighborhoods_selection" in st.session_state and len(st.session_state.neighborhoods_selection) > 0  \
-            and "user_category_query" in st.session_state and st.session_state.user_category_query != "":
-            search_disabled = False 
-
-        st.button(label=search_label, key="location_search", disabled=search_disabled, on_click=handler_search_venues)
-
-        st.write("---")
-        render_cta_link(url="https://twitter.com/dclin", label="Let's connect", font_awesome_icon="fa-twitter")
-        render_cta_link(url="https://linkedin.com/in/d2clin", label="Let's connect", font_awesome_icon="fa-linkedin")
-
-def render_search_result():
-    """
-    Render the search results on the main content area.
-    """
-    col1, col2 = st.columns([1,2])
-    col1.write(category_list_header)
-    col1.table(st.session_state.suggested_categories)
-    col2.write(f"Found {len(st.session_state.suggested_places)} venues.")
-    if (len(st.session_state.suggested_places) > 0):
-        col2.map(st.session_state.suggested_places, zoom=13, use_container_width=True)
-        st.write(venue_list_header)
-        st.dataframe(data=st.session_state.suggested_places, use_container_width=True)
+sales_per_city = df_selection.groupby(by=["City"]).sum()[["Total"]]
+fig = px.pie(
+    sales_per_city,
+    values='Total',
+    names=sales_per_city.index,
+    title='Sales per City',
+)
+right_column.plotly_chart(fig, use_container_width=True)
 
 
-boroughs = [{'NAME':'Brooklyn'},{'NAME':'Bronx'},{'NAME':'Manhattan'},{'NAME':'Queens'},{'NAME':'Staten Island'}]
-#boroughs = api.get_boroughs()
+with left_column:
+    st.subheader("Filtred Data:")
+df = st.dataframe(data)
 
-if "selected_borough" not in st.session_state: 
-    st.session_state.selected_borough = "Manhattan"
+pd.set_option('display.max_rows', None)  # Display all rows
+pd.set_option('display.max_columns', None)  # Display all columns
+pd.set_option('display.width', 1000)  # Set the width of the display
+pd.set_option('display.precision', 2)  # Set the precision of floating-point numbers
 
-#if "neighborhood_list" not in st.session_state:
-    #handler_load_neighborhoods()
-#render_search()
 
-st.title(page_title)
-st.write(page_helper)
-st.write("---")
 
-if "suggested_places" not in st.session_state:
-    st.write(empty_search_helper)
-else:
-    render_search_result()
+st_autorefresh(interval=20000, limit=100, key="dataframe")
 
-#st.write(st.session_state)
+st.markdown( 
+   f""" 
+   <style> 
+   .reportview-container .main .block-container{{ 
+      max-width: 800px; 
+      padding-top: 3rem; 
+      padding-right: 1rem; 
+      padding-left: 1rem; 
+      padding-bottom: 3rem; 
+      }} 
+      </style> """, 
+      unsafe_allow_html=True 
+      )
