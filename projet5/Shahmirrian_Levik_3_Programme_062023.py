@@ -20,20 +20,16 @@ def write_predict(prob,imagenet_class_name):
     print("Loaded model from disk")
 
 def load_model(img):
-    json_file = open('/app/streamlit-example/Formation_ML/model_num.json', 'r')
+    json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
 
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
 
     # load weights into new model
-    loaded_model.load_weights("/app/streamlit-example/Formation_ML/model_num.h5")
+    loaded_model.load_weights("/app/projet5/Formation_ML/model_num.h5")
     #print("Loaded model from disk")
 
-    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
-    preds = loaded_model.predict(x)
-    _, imagenet_class_name, prob = decode_predictions(preds, top=1)[0][0]
-    write_predict(prob,imagenet_class_name)
    
 city = st.sidebar.multiselect(
     "Selectionnez des tags:",
