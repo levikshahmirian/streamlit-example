@@ -63,4 +63,5 @@ yarl==1.8.2
 zipp==3.15.0
 streamlit_elements
 streamlit_autorefresh
+keras
 
