@@ -11,6 +11,7 @@ st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:",
 
 st.sidebar.header("Please Filter Here:")
 
+left_column, middle_column, right_column = st.columns(3)
 
 city = st.sidebar.multiselect(
     "Select the City:",
