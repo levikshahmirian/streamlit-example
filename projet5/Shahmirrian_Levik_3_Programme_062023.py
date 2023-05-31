@@ -105,9 +105,9 @@ boroughs = [{'NAME':'Brooklyn'},{'NAME':'Bronx'},{'NAME':'Manhattan'},{'NAME':'Q
 if "selected_borough" not in st.session_state: 
     st.session_state.selected_borough = "Manhattan"
 
-if "neighborhood_list" not in st.session_state:
-    handler_load_neighborhoods()
-render_search()
+#if "neighborhood_list" not in st.session_state:
+    #handler_load_neighborhoods()
+#render_search()
 
 st.title(page_title)
 st.write(page_helper)
