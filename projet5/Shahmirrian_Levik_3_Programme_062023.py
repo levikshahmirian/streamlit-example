@@ -17,13 +17,13 @@ st.sidebar.header("Choisissez les tags:")
 city = st.sidebar.multiselect(
     "Selectionnez des tags:",
     options="City",
-    default="Tags",
+    default="City",
 )
 
 customer_type = st.sidebar.multiselect(
     "Selectionnez des Topique:",
     options="City",
-    default="Topic",
+    default="City",
 )
 
 
@@ -33,7 +33,7 @@ customer_type = st.sidebar.multiselect(
 st.title(":bar_chart: Formation_ML Projet 5 ")
 st.markdown("##")
 
-left_column, middle_column, right_column = st.columns(1)
+left_column = st.columns(1)
 with left_column:
     st.subheader("Total Sales:")
 
