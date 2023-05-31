@@ -37,7 +37,7 @@ doc = None
 
 query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
 
-query_title = st.text_area("Ask a question about the document", on_change=clear_submit)
+query_title = st.text_area("Ask a question about the document")
 
 
 button = st.button("Submit")
