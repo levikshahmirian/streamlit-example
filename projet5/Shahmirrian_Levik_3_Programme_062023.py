@@ -4,8 +4,8 @@ import streamlit as st
 st.set_page_config(page_title="NYC Venue Search", layout="wide", initial_sidebar_state="expanded")
 
 # UI text strings 
-page_title = "FormationML Projet 5"
-page_helper = "Poser votre question "
+page_title = "NYC Venue Search"
+page_helper = "Discover NYC! The Streamlit app uses cosine similarity to semantically match your query with Foursquare venue categories and find matching venues in your selected areas."
 empty_search_helper = "Select a borough and neighborhood, and enter a search term to get started."
 category_list_header = "Suggested venue categories"
 borough_search_header = "Select a borough"
@@ -16,7 +16,55 @@ search_label = "Search for categories and venues"
 venue_list_header = "Venue details"
 
 
+# Handler functions 
+def handler_load_neighborhoods():
+    """
+    Load neighborhoods for the selected borough and update session state.
+    """
+    selected_borough = 'Manhattan'
+    if "borough_selection" in st.session_state and st.session_state.borough_selection != "":
+        selected_borough = st.session_state.borough_selection
+    neighborhoods = api.get_neighborhoods(selected_borough)
+    st.session_state.neighborhood_list = [n['NAME'] for n in neighborhoods]
 
+def handler_search_venues():
+    """
+    Search for venues based on user query and update session state with results.
+    """
+
+
+
+
+# UI elements 
+def render_cta_link(url, label, font_awesome_icon):
+    st.markdown('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">', unsafe_allow_html=True)
+    button_code = f'''<a href="{url}" target=_blank><i class="fa {font_awesome_icon}"></i> {label}</a>'''
+    return st.markdown(button_code, unsafe_allow_html=True)
+
+
+def render_search():
+    """
+    Render the search form in the sidebar.
+    """
+    search_disabled = True 
+    with st.sidebar:
+        st.selectbox(label=borough_search_header, options=([b['NAME'] for b in boroughs]), index = 2, key="borough_selection", on_change=handler_load_neighborhoods)
+
+        if "neighborhood_list" in st.session_state and len(st.session_state.neighborhood_list) > 0:
+            st.multiselect(label=neighborhood_search_header, options=(st.session_state.neighborhood_list), key="neighborhoods_selection", max_selections=5)
+
+        st.text_input(label=semantic_search_header, placeholder=semantic_search_placeholder, key="user_category_query")
+
+        if "borough_selection" in st.session_state and st.session_state.borough_selection != "" \
+            and "neighborhoods_selection" in st.session_state and len(st.session_state.neighborhoods_selection) > 0  \
+            and "user_category_query" in st.session_state and st.session_state.user_category_query != "":
+            search_disabled = False 
+
+        st.button(label=search_label, key="location_search", disabled=search_disabled, on_click=handler_search_venues)
+
+        st.write("---")
+        render_cta_link(url="https://twitter.com/dclin", label="Let's connect", font_awesome_icon="fa-twitter")
+        render_cta_link(url="https://linkedin.com/in/d2clin", label="Let's connect", font_awesome_icon="fa-linkedin")
 
 def render_search_result():
     """
@@ -41,3 +89,9 @@ st.title(page_title)
 st.write(page_helper)
 st.write("---")
 
+if "suggested_places" not in st.session_state:
+    st.write(empty_search_helper)
+else:
+    render_search_result()
+
+#st.write(st.session_state)
