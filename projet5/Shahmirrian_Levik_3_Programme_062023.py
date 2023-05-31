@@ -30,23 +30,10 @@ customer_type = st.sidebar.multiselect(
 
 
 # ---- MAINPAGE ----
-st.title(":bar_chart: Formation_ML Projet 5 ")
+st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
-left_column = st.columns(1)
-with left_column:
-    st.subheader("Total Sales:")
 
-
-
-
-
-
-
-
-
-with left_column:
-    st.subheader("Filtred Data:")
 
 
 
