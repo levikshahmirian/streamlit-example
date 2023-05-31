@@ -7,45 +7,37 @@ import json
 
 import numpy as np 
 
-st.set_page_config(page_title="Market Sales Dashboard", page_icon=":bar_chart:", layout="wide")
+st.set_page_config(page_title="Poser votre question", layout="wide")
 
-st.sidebar.header("Please Filter Here:")
+st.sidebar.header("Choisissez les tags:")
 
 
 
 
 city = st.sidebar.multiselect(
-    "Select the City:",
+    "Selectionnez des tags:",
     options="City",
-    default="City",
+    default="Tags",
 )
 
 customer_type = st.sidebar.multiselect(
-    "Select the Customer Type:",
+    "Selectionnez des Topique:",
     options="City",
-    default="City",
+    default="Topic",
 )
 
-gender = st.sidebar.multiselect(
-    "Select the Gender:",
-    options="City",
-    default="City",
-)
+
 
 
 # ---- MAINPAGE ----
-st.title(":bar_chart: Market Sales Dashboard")
+st.title(":bar_chart: Formation_ML Projet 5 ")
 st.markdown("##")
 
-left_column, middle_column, right_column = st.columns(3)
+left_column, middle_column, right_column = st.columns(1)
 with left_column:
     st.subheader("Total Sales:")
-with middle_column:
-    st.subheader("Average Rating:")
-with right_column:
-    st.subheader("Average Sales Per Transaction:")
 
-left_column, right_column = st.columns(2)
+
 
 
 
