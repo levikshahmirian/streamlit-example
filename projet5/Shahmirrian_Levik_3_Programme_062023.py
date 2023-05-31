@@ -35,18 +35,19 @@ st.markdown("##")
 index = None
 doc = None
 
-query = st.text_area("Ask a question about the document", on_change=clear_submit)
-with st.expander("Advanced Options"):
-    show_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
-    show_full_doc = st.checkbox("Show parsed contents of the document")
+query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
+
+query_title = st.text_area("Ask a question about the document", on_change=clear_submit)
+
 
 button = st.button("Submit")
 if button or st.session_state.get("submit"):
-    if not st.session_state.get("api_key_configured"):
-        st.error("Please configure your OpenAI API key!")
-    elif not index:
+
+    if not index:
         st.error("Please upload a document!")
-    elif not query:
+    elif not query_body:
+        st.error("Please enter a question!")
+    elif not query_title:
         st.error("Please enter a question!")
     else:
         st.session_state["submit"] = True
