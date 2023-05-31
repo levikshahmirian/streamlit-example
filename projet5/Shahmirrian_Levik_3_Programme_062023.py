@@ -31,8 +31,26 @@ def handler_search_venues():
     """
     Search for venues based on user query and update session state with results.
     """
+    try:
+        moderation_result = oai.get_moderation(st.session_state.user_category_query)
+        if moderation_result['flagged'] == True: 
+            flagged_categories_str = ", ".join(moderation_result['flagged_categories'])
+            st.error(f"⚠️ Your query was flagged by OpenAI's content moderation endpoint for: {flagged_categories_str}.  \n  \nPlease try a different query.")
+        else:
+            embeddings = oai.get_embedding(st.session_state.user_category_query)
+            st.session_state.suggested_categories = api.get_categories(embeddings)
 
+            if len(st.session_state.suggested_categories) > 0 and len(st.session_state.neighborhoods_selection) > 0: 
+                category_list = [s['CATEGORY'] for s in st.session_state.suggested_categories]
 
+                st.session_state.suggested_places = api.get_places(
+                    st.session_state.borough_selection, 
+                    st.session_state.neighborhoods_selection, 
+                    category_list)
+            else:
+                st.warning("No suggested categories found. Try a different search.")
+    except Exception as e: 
+        st.error(f"{str(e)}")
 
 
 # UI elements 
@@ -83,7 +101,12 @@ def render_search_result():
 boroughs = [{'NAME':'Brooklyn'},{'NAME':'Bronx'},{'NAME':'Manhattan'},{'NAME':'Queens'},{'NAME':'Staten Island'}]
 #boroughs = api.get_boroughs()
 
+if "selected_borough" not in st.session_state: 
+    st.session_state.selected_borough = "Manhattan"
 
+#if "neighborhood_list" not in st.session_state:
+    #handler_load_neighborhoods()
+#render_search()
 
 st.title(page_title)
 st.write(page_helper)
