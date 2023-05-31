@@ -23,12 +23,14 @@ city = st.sidebar.multiselect(
 customer_type = st.sidebar.multiselect(
     "Select the Customer Type:",
     options="City",
+    options="Tata",
     default="City",
 )
 
 gender = st.sidebar.multiselect(
     "Select the Gender:",
     options="City",
+    options="Hello",
     default="City",
 )
 
