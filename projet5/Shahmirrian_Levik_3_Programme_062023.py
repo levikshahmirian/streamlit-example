@@ -34,17 +34,13 @@ def load_model(img):
 city = st.sidebar.multiselect(
     "Selectionnez des tags:",
     options="City",
-    default="City",
+    default="City"
 )
 
 customer_type = st.sidebar.multiselect(
-    "Selectionnez des Topique:",
-    options = st.multiselect(
-        'What are your favorite colors',
-        ['Green', 'Yellow', 'Red', 'Blue'],
-        ['Yellow', 'Red'])
-
-
+    "Selectionnez des tags:",
+    ['Green', 'Yellow', 'Red', 'Blue'],
+    ['Yellow', 'Red']
 )
 
 
