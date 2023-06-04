@@ -61,7 +61,7 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
-        tags_list = query_title + query_body
+        tags_list = query_title 
         st.sidebar.multiselect(
             "Selectionnez des tags:",
             tags_list
