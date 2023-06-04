@@ -23,12 +23,8 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-    if not query_body:
-        st.write("")
-    elif not query_title:
-        st.write("")
-    else:
-        st.session_state["submit"]=True
+
+    st.session_state["submit"]=True
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -48,6 +44,7 @@ st.markdown("##")
 
 query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= write_predict())
+
 doc = None
 
 
