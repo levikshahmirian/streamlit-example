@@ -37,27 +37,16 @@ def load_model(img):
     loaded_model.load_weights("/app/projet5/Formation_ML/model_num.h5")
     #print("Loaded model from disk")
 
-   
-
-tags_suggestion = st.multiselect(
-    "Selectionnez des tags:",
-    options = tags_list
-)
-
 
 # ---- MAINPAGE ----
 st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
-query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
+query_body = st.text_area("Ask a question about the document", on_change=proc)
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
 doc = None
 
-
-    
-
 st.text_area('enter text', on_change=proc, key='text_key')
-
 
 button = st.button("Submit")
 if button or st.session_state.get("submit"):
