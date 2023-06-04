@@ -49,7 +49,7 @@ doc = None
 
 query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
 
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change=write_predict(tags_list))
 
 
 button = st.button("Submit")
@@ -61,12 +61,13 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
-        tags_list = query_title.split(" ")
+        tags_list.append( query_title.split(" "))
         write_predict(tags_list)
 
         options = st.sidebar.multiselect(
             'What are your favorite colors',
-            options = tags_list
+            
+            options = tags_list 
             )
         st.session_state["submit"] = True
 
