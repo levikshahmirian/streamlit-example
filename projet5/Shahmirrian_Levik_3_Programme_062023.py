@@ -66,7 +66,7 @@ if button or st.session_state.get("submit"):
 
         options = st.multiselect(
             'What are your favorite colors',
-            options = tags_list
+            options = tags_list.tolist()
             )
         #st.session_state["submit"] = True
 
