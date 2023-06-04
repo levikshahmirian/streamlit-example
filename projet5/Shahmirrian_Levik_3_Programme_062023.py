@@ -54,7 +54,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
-        multise_tags.insert("test", tags_list)
+        multise_tags.insert(1, tags_list)
 
 if len(multise_tags) > 0:       
     st.title(multise_tags)
