@@ -31,15 +31,11 @@ def load_model(img):
     #print("Loaded model from disk")
 
    
-city = st.sidebar.multiselect(
+
+tags_list = ['Green', 'Yellow', 'Red', 'Blue']
+tags_suggestion = st.sidebar.multiselect(
     "Selectionnez des tags:",
-    options="City",
-    default="City"
-)
-list = ['Green', 'Yellow', 'Red', 'Blue']
-customer_type = st.sidebar.multiselect(
-    "Selectionnez des tags:",
-    list
+    tags_list
 )
 
 
