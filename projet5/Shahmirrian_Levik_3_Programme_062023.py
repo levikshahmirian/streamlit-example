@@ -46,7 +46,7 @@ query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= write_predict())
 
 doc = None
-
+test
 
 #button = st.button("Choisir des Tags")
 if  st.session_state.get("submit"):
