@@ -16,8 +16,9 @@ st.sidebar.header("Choisissez les tags:")
 def clear_submit():
     st.session_state["submit"] = False
 
-def write_predict(prob,imagenet_class_name):
-    print("Loaded model from disk")
+def write_predict(tags_predict):
+    print(tags_predict),
+    tags_list = tags_predict
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -62,10 +63,7 @@ if button or st.session_state.get("submit"):
         st.error("Please enter a question!")
     else:
         tags_list = query_title 
-        st.sidebar.multiselect(
-            "Selectionnez des tags:",
-            tags_list
-        )
+        write_predict(tags_list)
         st.session_state["submit"] = True
 
 #st_autorefresh(interval=20000, limit=100, key="dataframe")
