@@ -63,13 +63,15 @@ if button or st.session_state.get("submit"):
     else:
         tags_list = query_title
         write_predict(tags_list)
-        st.session_state["submit"] = True
+
+        options = st.multiselect(
+            'What are your favorite colors',
+            options = tags_list
+            )
+        #st.session_state["submit"] = True
 
 #st_autorefresh(interval=20000, limit=100, key="dataframe")
 
-options = st.multiselect(
-    'What are your favorite colors',
-    options = tags_list
-    )
+
 
 st.write('You selected:', options)
