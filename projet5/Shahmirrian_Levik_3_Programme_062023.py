@@ -19,7 +19,6 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-    st.write(tags_list),
     st.session_state["submit"]=True
 
 def load_model(img):
@@ -43,9 +42,8 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
 doc = None
 
 
-button = st.button("Choisir des Tags")
-if button or st.session_state.get("submit"):
-
+#button = st.button("Choisir des Tags")
+if  st.session_state.get("submit"):
 
     if not query_body:
         st.error("Please enter a question!")
