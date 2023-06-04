@@ -55,7 +55,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
-        
+        init_options= tags_list
         multise_tags.insert(tags_list)
 
 if len(multise_tags) > 0:       
@@ -70,7 +70,7 @@ if st.button('Enregistrer'):
         st.write("Votre question est enregistrée !")
 
 
-init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+init_options = [1]
 
 
 if 'options' not in st.session_state:
