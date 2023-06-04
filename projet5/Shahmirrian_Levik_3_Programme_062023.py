@@ -56,7 +56,7 @@ if  st.session_state.get("submit"):
         options = st.sidebar.multiselect(
                         
             options = tags_list,
-            default = tags_list
+            default = "tags_list"
             )
         
 
