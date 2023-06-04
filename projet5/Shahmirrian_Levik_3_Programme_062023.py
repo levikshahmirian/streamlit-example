@@ -19,11 +19,11 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-    st.write(query_title),
-    tags_list = query_title.tolist()
+    st.write(tags_list),
+    tags_list = tags_list.tolist()
 
 query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change=write_predict())
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change=st.button("Submit"))
 
 
 def load_model(img):
