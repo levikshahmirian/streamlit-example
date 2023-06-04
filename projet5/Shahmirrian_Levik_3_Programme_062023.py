@@ -17,7 +17,7 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-    tags_list.split(" ")
+    
     st.write(tags_list),
     
 
