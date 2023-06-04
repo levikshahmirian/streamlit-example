@@ -70,7 +70,7 @@ if st.button('Enregistrer'):
 
 
 
-
+init_options = query_title.tostring()
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
