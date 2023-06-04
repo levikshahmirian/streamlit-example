@@ -40,19 +40,7 @@ ms = st.sidebar.multiselect(
     default=st.session_state.default
 )
 
-# If 1 is selected, remove the 2 and rerun.
-if 1 in ms:
-    if 2 in st.session_state.options:
-        st.session_state.options.remove(2)
-        st.session_state.default = ms
-        st.experimental_rerun()
 
-# Else if 2 is selected, remove the 1 and rerun.
-elif 2 in ms:
-    if 1 in st.session_state.options:
-        st.session_state.options.remove(1)
-        st.session_state.default = ms
-        st.experimental_rerun()
 
 
 st.write('##### Valid Selection')
