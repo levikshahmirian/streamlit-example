@@ -23,7 +23,6 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-
     st.session_state["submit"]=True
 
 def load_model(img):
@@ -55,8 +54,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
-        
-        multise_tags.insert(tags_list)
+        multise_tags.insert("test", tags_list)
 
 if len(multise_tags) > 0:       
     st.title(multise_tags)
