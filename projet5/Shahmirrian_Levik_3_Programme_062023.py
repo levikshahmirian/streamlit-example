@@ -19,7 +19,7 @@ st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= write_predict())
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
 
 doc = None
 
