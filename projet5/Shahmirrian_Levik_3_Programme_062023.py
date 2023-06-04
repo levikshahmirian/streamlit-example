@@ -62,7 +62,7 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
-        tags_list = query_title 
+        tags_list = query_title.count
         write_predict(tags_list)
         st.session_state["submit"] = True
 
