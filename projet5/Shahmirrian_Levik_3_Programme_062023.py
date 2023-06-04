@@ -22,8 +22,8 @@ def write_predict():
     st.write(tags_list),
     tags_list = tags_list.tolist()
 
-query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
+def proc():
+    st.write(tags_list)
 
 
 def load_model(img):
@@ -49,10 +49,11 @@ tags_suggestion = st.multiselect(
 st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
+query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
 doc = None
 
-def proc():
-    st.write(tags_list)
+
     
 
 st.text_area('enter text', on_change=proc, key='text_key')
