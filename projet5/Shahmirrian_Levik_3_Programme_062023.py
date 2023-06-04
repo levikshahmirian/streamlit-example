@@ -59,19 +59,14 @@ if  st.session_state.get("submit"):
             default = tags_list
             )
         
-def main():
-    st.title("Only allow text example")
-    
-    text = str(st.text_input('Type something'))
+st.write(tags_list)
 
-    #only allow strings
-    if text.isalpha():
-        st.write(text, '...works as its a string', )
+if st.button('Enregistrer'):
+    if not query_body:
+        st.error("Please enter a question!")
+    elif not query_title:
+        st.error("Please enter a question!")
     else:
-        st.write('Please type in a string ')
-
-
-if __name__ == "__main__":
-    main()  
+        st.write("Votre question est enregistrée !")
 
 #st_autorefresh(interval=2000, limit=100, key="dataframe")
