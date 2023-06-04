@@ -20,9 +20,9 @@ def clear_submit():
 
 def write_predict():
     if not query_body:
-        st.error("Saisissez votre question!")
+        st.write("")
     elif not query_title:
-        st.error("Donnez un titre à votre question!")
+        st.write("")
     else:
         st.session_state["submit"]=True
 
