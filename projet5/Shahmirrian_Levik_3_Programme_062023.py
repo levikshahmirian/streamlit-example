@@ -69,7 +69,7 @@ if button or st.session_state.get("submit"):
 
 options = st.multiselect(
     'What are your favorite colors',
-    tags_list
+    options = tags_list
     )
 
 st.write('You selected:', options)
