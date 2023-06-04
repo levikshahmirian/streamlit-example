@@ -11,7 +11,7 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
 
-
+st.sidebar.header("Choisissez les tags:")
 tags_list = []
 def clear_submit():
     st.session_state["submit"] = False
@@ -64,11 +64,10 @@ if button or st.session_state.get("submit"):
         tags_list = query_title.split(" ")
         write_predict(tags_list)
 
-        options = st.multiselect(
+        options = st.sidebar.multiselect(
             'What are your favorite colors',
             options = tags_list
             )
         #st.session_state["submit"] = True
 
 #st_autorefresh(interval=20000, limit=100, key="dataframe")
-
