@@ -18,7 +18,7 @@ def clear_submit():
 
 def write_predict(tags_predict):
     st.write(query_title),
-    tags_list = query_title
+    tags_list = query_title.tolist()
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
