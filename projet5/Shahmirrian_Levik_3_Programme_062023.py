@@ -44,7 +44,7 @@ customer_type = st.sidebar.multiselect(
         ['Green', 'Yellow', 'Red', 'Blue'],
         ['Yellow', 'Red'])
 
-    st.write('You selected:', options)
+
 )
 
 
