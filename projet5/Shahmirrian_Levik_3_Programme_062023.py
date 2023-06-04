@@ -61,12 +61,12 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
-        tags_list = query_title
+        tags_list = query_title.split(" ")
         write_predict(tags_list)
 
         options = st.multiselect(
             'What are your favorite colors',
-            options = tags_list.tolist()
+            options = tags_list
             )
         #st.session_state["submit"] = True
 
