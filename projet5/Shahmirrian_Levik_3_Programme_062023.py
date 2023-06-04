@@ -12,7 +12,7 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
-init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+init_options = [" "]
 tags_list = [" "]
 
 # ---- MAINPAGE ----
