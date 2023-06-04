@@ -12,7 +12,7 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
-
+tags_list = []
 def clear_submit():
     st.session_state["submit"] = False
 
@@ -35,7 +35,7 @@ def load_model(img):
 
 tags_suggestion = st.sidebar.multiselect(
     "Selectionnez des tags:",
-    options = [" "]
+    options = tags_list
 )
 
 
