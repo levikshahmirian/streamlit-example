@@ -59,8 +59,8 @@ if  st.session_state.get("submit"):
             options = tags_list,
             
             )
-        
-st.title(options)
+if len(options) > 0:       
+    st.title(options)
 
 if st.button('Enregistrer'):
     if not query_body:
