@@ -16,12 +16,10 @@ init_options = [" "]
 tags_list = [""]
 multise_tags = st.sidebar.multiselect(
     'Choisissez dans la liste :',            
-    options = tags_list,
-    
+    options = tags_list
     )
 
-def clear_submit():
-    st.session_state["submit"] = False
+
 
 def write_predict():
     st.session_state["submit"]=True
