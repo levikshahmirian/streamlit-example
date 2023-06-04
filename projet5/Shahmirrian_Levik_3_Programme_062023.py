@@ -18,9 +18,9 @@ tags_list = []
 def clear_submit():
     st.session_state["submit"] = False
 
-def write_predict():
+def write_predict(tags_list):
     st.write(tags_list),
-    tags_list = tags_list.tolist()
+    
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
