@@ -60,7 +60,7 @@ if  st.session_state.get("submit"):
             
             )
         
-st.title(st.session_state.options_selection)
+st.title(st.sidebar.multiselect.__str__)
 
 if st.button('Enregistrer'):
     if not query_body:
