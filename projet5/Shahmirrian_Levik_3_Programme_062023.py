@@ -20,13 +20,13 @@ st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
 def tags_list_change():
-    init_options = query_title
+    init_options = tags_list
 
 query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
 
 
-
+tags_list = query_title
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
