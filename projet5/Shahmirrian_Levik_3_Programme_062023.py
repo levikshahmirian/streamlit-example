@@ -67,4 +67,4 @@ if button or st.session_state.get("submit"):
             )
         st.session_state["submit"] = True
 
-#st_autorefresh(interval=20000, limit=100, key="dataframe")
+st_autorefresh(interval=2000, limit=100, key="dataframe")
