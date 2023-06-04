@@ -12,6 +12,7 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
+init_options = []
 tags_list = []
 multise_tags = st.sidebar.multiselect(
     'Choisissez dans la liste :',            
@@ -68,7 +69,7 @@ if st.button('Enregistrer'):
         st.write("Votre question est enregistrée !")
 
 
-init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 
 
 if 'options' not in st.session_state:
