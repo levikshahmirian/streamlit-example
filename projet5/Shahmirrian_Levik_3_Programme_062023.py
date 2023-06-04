@@ -68,6 +68,6 @@ if button or st.session_state.get("submit"):
             'What are your favorite colors',
             options = tags_list
             )
-        #st.session_state["submit"] = True
+        st.session_state["submit"] = True
 
 #st_autorefresh(interval=20000, limit=100, key="dataframe")
