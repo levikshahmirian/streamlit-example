@@ -18,9 +18,9 @@ tags_list = []
 def clear_submit():
     st.session_state["submit"] = False
 
-def write_predict(tags_list):
+def write_predict():
     st.write(tags_list),
-    
+    st.session_state["submit"]=True
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -39,7 +39,7 @@ st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= st.session_state["submit"]=True)
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= write_predict())
 doc = None
 
 
@@ -53,7 +53,7 @@ if button or st.session_state.get("submit"):
         st.error("Please enter a question!")
     else:
         tags_list=query_title.split(" ")
-        write_predict(tags_list)
+        #write_predict(tags_list)
 
         options = st.sidebar.multiselect(
             'What are your favorite colors',
