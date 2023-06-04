@@ -16,7 +16,7 @@ tags_list = []
 def clear_submit():
     st.session_state["submit"] = False
 
-def write_predict(tags_predict):
+def write_predict():
     st.write(query_title),
     tags_list = query_title.tolist()
 
