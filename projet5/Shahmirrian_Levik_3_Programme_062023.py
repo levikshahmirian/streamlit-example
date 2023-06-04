@@ -54,9 +54,9 @@ if  st.session_state.get("submit"):
         #write_predict(tags_list)
 
         options = st.sidebar.multiselect(
-                        
+            'Choisissez dans la liste :',            
             options = tags_list,
-            default = "tags_list"
+            default = tags_list
             )
         
 
