@@ -20,30 +20,8 @@ st.markdown("##")
 
 query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
+init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-doc = None
-
-
-#button = st.button("Choisir des Tags")
-if  st.session_state.get("submit"):
-
-    if not query_title:
-        st.error("Donnez un titre à votre question!")
-    else:
-        tags_list=query_title.split(" ")
- 
-
-if st.button('Enregistrer'):
-    if not query_body:
-        st.error("Saisissez votre question!")
-    elif not query_title:
-        st.error("Donnez un titre à votre question!")
-    else:
-        st.write("Votre question est enregistrée !")
-
-
-
-init_options = query_title
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
@@ -74,4 +52,3 @@ elif 2 in ms:
 
 st.write('##### Valid Selection')
 st.write(str(ms))
-#st_autorefresh(interval=2000, limit=100, key="dataframe")
