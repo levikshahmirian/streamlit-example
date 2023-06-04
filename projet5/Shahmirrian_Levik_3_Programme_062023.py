@@ -17,8 +17,8 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-    
-    st.write(tags_list),
+    if tags_list:
+        st.write(tags_list.split(" ")),
     
 
 def load_model(img):
