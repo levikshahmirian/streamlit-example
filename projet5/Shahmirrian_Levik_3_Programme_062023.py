@@ -51,7 +51,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
-        st.markdown("##")
+        
         #write_predict(tags_list)
 
         options = st.sidebar.multiselect(
@@ -60,7 +60,7 @@ if  st.session_state.get("submit"):
             
             )
         
-st.write(tags_list)
+st.title(options.__getitem__)
 
 if st.button('Enregistrer'):
     if not query_body:
