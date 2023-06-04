@@ -12,8 +12,8 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
-init_options = []
-tags_list = []
+init_options = [" "]
+tags_list = [""]
 multise_tags = st.sidebar.multiselect(
     'Choisissez dans la liste :',            
     options = tags_list,
