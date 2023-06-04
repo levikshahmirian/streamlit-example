@@ -23,7 +23,7 @@ def write_predict():
     tags_list = tags_list.tolist()
 
 def proc():
-    st.write(st.session_state.text_key)
+    st.write("Hello")
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
