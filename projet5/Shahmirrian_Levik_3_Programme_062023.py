@@ -45,9 +45,7 @@ doc = None
 #button = st.button("Choisir des Tags")
 if  st.session_state.get("submit"):
 
-    if not query_body:
-        st.error("Saisissez votre question!")
-    elif not query_title:
+    if not query_title:
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
