@@ -46,9 +46,9 @@ doc = None
 if  st.session_state.get("submit"):
 
     if not query_body:
-        st.error("Please enter a question!")
+        st.error("Saisissez votre question!")
     elif not query_title:
-        st.error("Please enter a question!")
+        st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
         #write_predict(tags_list)
@@ -56,16 +56,16 @@ if  st.session_state.get("submit"):
         options = st.sidebar.multiselect(
             'Choisissez dans la liste :',            
             options = tags_list,
-            default = tags_list
+            
             )
         
 st.write(tags_list)
 
 if st.button('Enregistrer'):
     if not query_body:
-        st.error("Please enter a question!")
+        st.error("Saisissez votre question!")
     elif not query_title:
-        st.error("Please enter a question!")
+        st.error("Donnez un titre à votre question!")
     else:
         st.write("Votre question est enregistrée !")
 
