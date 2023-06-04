@@ -22,6 +22,8 @@ def write_predict():
     st.write(tags_list),
     tags_list = tags_list.tolist()
 
+def proc():
+    st.write(st.session_state.text_key)
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -43,8 +45,7 @@ query_body = st.text_area("Ask a question about the document", on_change=proc)
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
 doc = None
 
-def proc():
-    st.write(st.session_state.text_key)
+
 
 st.text_area('enter text', on_change=proc, key='text_key')
 
