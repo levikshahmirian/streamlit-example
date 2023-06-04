@@ -57,8 +57,8 @@ if  st.session_state.get("submit"):
         tags_list=query_title.split(" ")
         multise_tags.append(tags_list)
 
-if len(options) > 0:       
-    st.title(options)
+if len(multise_tags) > 0:       
+    st.title(multise_tags)
 
 if st.button('Enregistrer'):
     if not query_body:
