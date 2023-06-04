@@ -39,8 +39,12 @@ city = st.sidebar.multiselect(
 
 customer_type = st.sidebar.multiselect(
     "Selectionnez des Topique:",
-    options="City",
-    default="City",
+    options = st.multiselect(
+        'What are your favorite colors',
+        ['Green', 'Yellow', 'Red', 'Blue'],
+        ['Yellow', 'Red'])
+
+    st.write('You selected:', options)
 )
 
 
