@@ -13,7 +13,11 @@ st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
 tags_list = []
-
+options = st.sidebar.multiselect(
+    'Choisissez dans la liste :',            
+    options = tags_list,
+    
+    )
 
 def clear_submit():
     st.session_state["submit"] = False
@@ -54,11 +58,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
-        options = st.sidebar.multiselect(
-            'Choisissez dans la liste :',            
-            options = tags_list,
-            
-            )
+
 if len(options) > 0:       
     st.title(options)
 
