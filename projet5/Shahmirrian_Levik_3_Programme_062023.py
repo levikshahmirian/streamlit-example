@@ -13,12 +13,18 @@ st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
 tags_list = []
+
+
 def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
     st.write(query_title),
     tags_list = query_title.tolist()
+
+query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change=write_predict())
+
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -47,9 +53,7 @@ st.markdown("##")
 
 doc = None
 
-query_body = st.text_area("Ask a question about the document", on_change=clear_submit)
 
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change=write_predict())
 
 
 button = st.button("Submit")
