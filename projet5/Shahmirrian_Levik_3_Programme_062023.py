@@ -62,8 +62,8 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
-        tags_list=query_title.split(" ")
-        write_predict(tags_list)
+        
+        write_predict()
 
         options = st.sidebar.multiselect(
             'What are your favorite colors',
