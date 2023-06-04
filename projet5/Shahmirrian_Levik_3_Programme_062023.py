@@ -32,7 +32,7 @@ def load_model(img):
 
    
 
-tags_list = ['Green', 'Yellow', 'Red', 'Blue']
+tags_list = []
 tags_suggestion = st.sidebar.multiselect(
     "Selectionnez des tags:",
     tags_list
@@ -61,6 +61,7 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
+        tags_list = query_title + query_body
         st.session_state["submit"] = True
 
 st_autorefresh(interval=20000, limit=100, key="dataframe")
