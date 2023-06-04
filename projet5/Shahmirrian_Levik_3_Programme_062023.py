@@ -51,6 +51,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
+        st.markdown("##")
         #write_predict(tags_list)
 
         options = st.sidebar.multiselect(
