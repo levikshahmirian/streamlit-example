@@ -13,13 +13,6 @@ st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
 
-
-# ---- MAINPAGE ----
-st.title("Formation_ML Projet 5 ")
-st.markdown("##")
-
-query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
 init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
