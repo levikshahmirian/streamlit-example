@@ -36,11 +36,10 @@ city = st.sidebar.multiselect(
     options="City",
     default="City"
 )
-
+list = ['Green', 'Yellow', 'Red', 'Blue']
 customer_type = st.sidebar.multiselect(
     "Selectionnez des tags:",
-    ['Green', 'Yellow', 'Red', 'Blue'],
-    ['Yellow', 'Red']
+    list
 )
 
 
