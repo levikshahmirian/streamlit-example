@@ -33,10 +33,9 @@ def load_model(img):
 
    
 
-tags_list = []
 tags_suggestion = st.sidebar.multiselect(
     "Selectionnez des tags:",
-    tags_list
+    
 )
 
 
