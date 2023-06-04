@@ -72,6 +72,3 @@ if button or st.session_state.get("submit"):
 
 #st_autorefresh(interval=20000, limit=100, key="dataframe")
 
-
-
-st.write('You selected:', options)
