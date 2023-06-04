@@ -39,11 +39,11 @@ st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= st.session_state["submit"]=True)
 doc = None
 
 
-button = st.button("Submit")
+button = st.button("Choisir des Tags")
 if button or st.session_state.get("submit"):
 
 
@@ -60,6 +60,6 @@ if button or st.session_state.get("submit"):
             
             options = tags_list 
             )
-        st.session_state["submit"] = True
+        
 
 #st_autorefresh(interval=2000, limit=100, key="dataframe")
