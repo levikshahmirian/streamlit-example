@@ -16,10 +16,9 @@ tags_list = []
 def clear_submit():
     st.session_state["submit"] = False
 
-def write_predict():
-    if tags_list:
-        st.write(tags_list.split(" ")),
-    
+def write_predict(tags_predict):
+    st.write(query_title),
+    tags_list = query_title
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -62,8 +61,8 @@ if button or st.session_state.get("submit"):
     elif not query_title:
         st.error("Please enter a question!")
     else:
-        
-        write_predict()
+        tags_list=query_title.split(" ")
+        write_predict(tags_list)
 
         options = st.sidebar.multiselect(
             'What are your favorite colors',
