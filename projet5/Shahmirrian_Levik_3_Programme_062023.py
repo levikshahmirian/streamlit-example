@@ -12,9 +12,38 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 st.set_page_config(page_title="Poser votre question", layout="wide")
 
 st.sidebar.header("Choisissez les tags:")
-init_options = [" "]
 
 
+# ---- MAINPAGE ----
+st.title("Formation_ML Projet 5 ")
+st.markdown("##")
+
+query_body = st.text_area("Ask a question about the document")
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= write_predict())
+
+doc = None
+
+
+#button = st.button("Choisir des Tags")
+if  st.session_state.get("submit"):
+
+    if not query_title:
+        st.error("Donnez un titre à votre question!")
+    else:
+        tags_list=query_title.split(" ")
+ 
+
+if st.button('Enregistrer'):
+    if not query_body:
+        st.error("Saisissez votre question!")
+    elif not query_title:
+        st.error("Donnez un titre à votre question!")
+    else:
+        st.write("Votre question est enregistrée !")
+
+
+
+init_options = query_title
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
