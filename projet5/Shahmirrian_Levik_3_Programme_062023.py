@@ -41,7 +41,7 @@ def load_model(img):
 st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
-query_body = st.text_area("Ask a question about the document", on_change=proc)
+query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")
 doc = None
 
