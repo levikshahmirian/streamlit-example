@@ -60,7 +60,7 @@ if  st.session_state.get("submit"):
             
             )
         
-st.title(options.__getitem__)
+st.title(st.session_state.options_selection)
 
 if st.button('Enregistrer'):
     if not query_body:
