@@ -55,6 +55,7 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
+        options = tags_list
 
 if len(options) > 0:       
     st.title(options)
