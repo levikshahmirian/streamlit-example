@@ -19,7 +19,12 @@ def clear_submit():
     st.session_state["submit"] = False
 
 def write_predict():
-    st.session_state["submit"]=True
+    if not query_body:
+        st.error("Saisissez votre question!")
+    elif not query_title:
+        st.error("Donnez un titre à votre question!")
+    else:
+        st.session_state["submit"]=True
 
 def load_model(img):
     json_file = open('/app/streamlit-example/projet5/model_num.json', 'r')
@@ -49,9 +54,6 @@ if  st.session_state.get("submit"):
         st.error("Donnez un titre à votre question!")
     else:
         tags_list=query_title.split(" ")
-        
-        #write_predict(tags_list)
-
         options = st.sidebar.multiselect(
             'Choisissez dans la liste :',            
             options = tags_list,
@@ -68,14 +70,6 @@ if st.button('Enregistrer'):
     else:
         st.write("Votre question est enregistrée !")
 
-selected_options = st.multiselect("Select one or more options:",
-    ['A', 'B', 'C'])
 
-all_options = st.checkbox("Select all options")
-
-if all_options:
-    selected_options = ['A', 'B', 'C']
-
-selected_options # this uses MAGIC to print the options to the screen!
 
 #st_autorefresh(interval=2000, limit=100, key="dataframe")
