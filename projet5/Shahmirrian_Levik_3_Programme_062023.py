@@ -59,5 +59,19 @@ if  st.session_state.get("submit"):
             default = tags_list
             )
         
+def main():
+    st.title("Only allow text example")
+    
+    text = str(st.text_input('Type something'))
+
+    #only allow strings
+    if text.isalpha():
+        st.write(text, '...works as its a string', )
+    else:
+        st.write('Please type in a string ')
+
+
+if __name__ == "__main__":
+    main()  
 
 #st_autorefresh(interval=2000, limit=100, key="dataframe")
