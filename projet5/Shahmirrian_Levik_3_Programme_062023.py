@@ -23,7 +23,7 @@ def tags_list_change():
 query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
 
-st.session_state.options = query_title.tolist()
+st.session_state.options = query_title
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
