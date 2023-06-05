@@ -65,8 +65,6 @@ def load_model(img):
     write_predict(prob,imagenet_class_name)
    
 
-
-
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
 
