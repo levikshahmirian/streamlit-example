@@ -104,10 +104,10 @@ def clean_text(text):
  #   st.session_state.default = []
 
 ms = st.sidebar.multiselect(
-    label='Pick a number',
+    label='Choix multiples possibles',
     options=st.session_state.options,
     default=st.session_state.default
 )
 
 st.write('##### Valid Selection')
-st.write(str(ms))
+#st.write(str(ms))
