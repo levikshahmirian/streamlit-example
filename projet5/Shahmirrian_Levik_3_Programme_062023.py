@@ -63,7 +63,6 @@ def RemoveHTMLTags(text):
     tag = False
     quote = False
     out = ""
-
     for c in text:
             if c == '<' and not quote:
                 tag = True
@@ -104,7 +103,7 @@ if query_title is not None:
     ms = st.multiselect(
         label='Choix multiples possibles',
         options=st.session_state.options,
-        default=st.session_state.default
+        default="Chosissez dans la list"
     )
 
     st.write('##### Tages séléctionnés')
