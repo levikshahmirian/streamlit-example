@@ -46,8 +46,8 @@ def load_apply_model(img):
 
 
 #Développer les contractions"""
-def Expand_the_Contractions(text):
-    return contractions.fix(text)
+#def Expand_the_Contractions(text):
+    #return contractions.fix(text)
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
@@ -80,10 +80,6 @@ def lowercase(text):
     return text.lower()
 
 
-#supprimer les interligne"""
-def remove_line_breaks(text):
-    text = text.replace('\r', ' ').replace('\n', ' ')
-    return text
 
 
 
@@ -91,8 +87,7 @@ def clean_text(text):
     _steps = [
     RemoveHTMLTags,
     lowercase,
-    remove_line_breaks,
-    Expand_the_Contractions,
+    #Expand_the_Contractions,
     lemmatize
     ]
     for step in _steps:
