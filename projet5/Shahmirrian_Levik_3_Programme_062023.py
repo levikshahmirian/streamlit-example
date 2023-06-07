@@ -96,10 +96,7 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
 #query_title = query_title
 #st.session_state.options =  load_apply_model(query_title)
 
-if 'options' not in st.session_state:
-    st.session_state.options = init_options
-if 'default' not in st.session_state:
-    st.session_state.default = []
+
 
 ms = st.sidebar.multiselect(
     label='Pick a number',
