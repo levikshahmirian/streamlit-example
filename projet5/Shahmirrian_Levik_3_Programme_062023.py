@@ -14,7 +14,7 @@ import contractions
 import string
 import re
 import spacy as sp
-
+import sklearn
 
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
