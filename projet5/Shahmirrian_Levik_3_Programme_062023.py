@@ -77,7 +77,7 @@ def clean_text(text):
 def load_apply_model(clean_text):
 
     # load model into new model
-    pickled_model = pickle.load(open('model.pkl', 'rb'))
+    pickled_model = pickle.load(open('projet5\model.pkl', 'rb'))
 
     x = clean_text(query_title).split(' ') 
     preds = pickled_model.predict(x)
