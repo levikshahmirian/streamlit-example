@@ -30,7 +30,7 @@ st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
 def tags_list_change():
-    init_options = load_apply_model(query_title)
+    init_options = tags_list
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
@@ -93,7 +93,7 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
     
 
 #query_title = query_title
-#st.session_state.options = clean_text(query_title).split(' ') 
+st.session_state.options =  load_apply_model(query_title) 
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
