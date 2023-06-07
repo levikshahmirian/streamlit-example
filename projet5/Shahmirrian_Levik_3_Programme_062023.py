@@ -22,6 +22,9 @@ st.sidebar.header("Choisissez les tags:")
 init_options = [""]
 tags_list = [""]
 
+sp.cli.download("en_core_web_sm")
+nlp = sp.load("en_core_web_sm")
+
 # ---- MAINPAGE ----
 st.title("Formation_ML Projet 5 ")
 st.markdown("##")
@@ -48,13 +51,13 @@ def Expand_the_Contractions(text):
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
-   nlp = sp.load("en_core_web_sm")
+   
    doc = nlp(text)
    tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit)]
    return ' '.join(tokens)
 
 def RemoveHTMLTags(text):
-    nlp = sp.load("en_core_web_sm")
+    
     doc = nlp(text.itertext())
     return doc
 
