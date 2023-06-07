@@ -95,10 +95,10 @@ def clean_text(text):
 #query_title = query_title
 #st.session_state.options = clean_text(query_title).split(' ') 
 
-if 'options' not in st.session_state:
-    st.session_state.options = init_options
-if 'default' not in st.session_state:
-    st.session_state.default = []
+#if 'options' not in st.session_state:
+ #   st.session_state.options = init_options
+#if 'default' not in st.session_state:
+ #   st.session_state.default = []
 
 ms = st.sidebar.multiselect(
     label='Pick a number',
