@@ -103,8 +103,8 @@ if 'default' not in st.session_state:
 
 ms = st.sidebar.multiselect(
     label='Pick a number',
-    options=st.session_state.options,
-    default=st.session_state.default
+    options=[" "],
+    default=["st.session_state.default"]
 )
 
 st.write('##### Valid Selection')
