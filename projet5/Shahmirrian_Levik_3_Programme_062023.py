@@ -13,7 +13,21 @@ import string
 import re
 import spacy as sp
 import sklearn
+import functools
+import plotly.express as px
 
+chart = functools.partial(st.plotly_chart, use_container_width=True)
+COMMON_ARGS = {
+    "color": "symbol",
+    "color_discrete_sequence": px.colors.sequential.Greens,
+    "hover_data": [
+        "account_name",
+        "percent_of_account",
+        "quantity",
+        "total_gain_loss_dollar",
+        "total_gain_loss_percent",
+    ],
+}
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
 st.sidebar.header("Choisissez les tags:")
