@@ -18,7 +18,7 @@ import spacy as sp
 
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
-st.sidebar.header("Choisissez les tags:")
+#st.sidebar.header("Choisissez les tags:")
 init_options = [""]
 tags_list = [""]
 
@@ -103,11 +103,4 @@ def clean_text(text):
 #if 'default' not in st.session_state:
  #   st.session_state.default = []
 
-ms = st.sidebar.multiselect(
-    label='Choix multiples possibles',
-    options=st.session_state.options,
-    default=st.session_state.default
-)
 
-st.write('##### Tages séléctionnés')
-st.write(str(ms))
