@@ -54,6 +54,7 @@ def lemmatize(text):
    
    doc = nlp(text)
    tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit or token.like_url)]
+   
    return ' '.join(tokens)
 
 
@@ -75,8 +76,8 @@ def RemoveHTMLTags(text):
     return out
 
 def lowercase(text):
-    #text_low = [token.lower() for token in word_tokenize(text)]
-    text_low= word_tokenize(text.lower())
+    text_low = [token.lower() for token in word_tokenize(text)]
+    #text_low= word_tokenize(text.lower())
     return text_low
 
 def remove_punctuation(text):
