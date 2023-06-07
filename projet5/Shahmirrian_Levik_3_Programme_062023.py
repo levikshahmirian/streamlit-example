@@ -18,7 +18,7 @@ import spacy as sp
 
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
-#st.sidebar.header("Choisissez les tags:")
+st.sidebar.header("Choisissez les tags:")
 init_options = [""]
 tags_list = [""]
 
@@ -94,13 +94,20 @@ def clean_text(text):
     return text   
 
     
-
+if query_title is not None:
 #query_title = query_title
-#st.session_state.options = clean_text(query_title).split(' ') 
+    st.session_state.options = clean_text(query_title).split(' ') 
 
-#if 'options' not in st.session_state:
- #   st.session_state.options = init_options
-#if 'default' not in st.session_state:
- #   st.session_state.default = []
+    if 'options' not in st.session_state:
+       st.session_state.options = init_options
+    if 'default' not in st.session_state:
+       st.session_state.default = []
 
+    ms = st.multiselect(
+        label='Choix multiples possibles',
+        options=st.session_state.options,
+        default=st.session_state.default
+    )
 
+    st.write('##### Tages séléctionnés')
+    st.write(str(ms))
