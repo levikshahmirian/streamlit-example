@@ -37,7 +37,7 @@ def tags_list_change():
 
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title")#, on_change= tags_list_change())
 
 def load_apply_model(img):
 
@@ -109,5 +109,5 @@ ms = st.sidebar.multiselect(
     default=st.session_state.default
 )
 
-st.write('##### Valid Selection')
-#st.write(str(ms))
+st.write('##### Tages séléctionnés')
+st.write(str(ms))
