@@ -32,23 +32,6 @@ st.markdown("##")
 def tags_list_change():
     init_options = tags_list
 
-
-
-
-def load_apply_model(clean_text):
-
-    # load model into new model
-    pickled_model = pickle.load(open('model.pkl', 'rb'))
-
-    x = clean_text(query_title).split(' ') 
-    preds = pickled_model.predict(x)
-
-query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= load_apply_model())
-#Développer les contractions"""
-#def Expand_the_Contractions(text):
-    #return contractions.fix(text)
-
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
    
@@ -89,6 +72,23 @@ def clean_text(text):
     for step in _steps:
         text=step(text)
     return text   
+
+
+def load_apply_model(clean_text):
+
+    # load model into new model
+    pickled_model = pickle.load(open('model.pkl', 'rb'))
+
+    x = clean_text(query_title).split(' ') 
+    preds = pickled_model.predict(x)
+
+query_body = st.text_area("Ask a question about the document")
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= load_apply_model())
+#Développer les contractions"""
+#def Expand_the_Contractions(text):
+    #return contractions.fix(text)
+
+
 
     
 
