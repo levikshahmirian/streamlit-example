@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import requests
-import json
 import numpy as np 
 from keras.models import model_from_json
 from keras.models import load_model
@@ -97,7 +95,7 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
 #st.session_state.options =  load_apply_model(query_title)
 
 
-options = st.sid.multiselect(
+options = st.sidebar.multiselect(
     'What are your favorite colors',
     ['Green', 'Yellow', 'Red', 'Blue'],
     ['Yellow', 'Red'])
