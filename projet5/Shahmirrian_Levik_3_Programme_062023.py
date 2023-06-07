@@ -28,7 +28,7 @@ st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
 def tags_list_change():
-    init_options = [" "]
+    init_options = tags_list
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
