@@ -56,7 +56,7 @@ def lemmatize(text):
 def preprocess_text(text):
     #Make text lowercase, remove text in square brackets,remove links,remove punctuation
     #and remove words containing numbers.'''
-    text = [each_string.lower() for each_string in text]
+    text = [each_string.lower() for each_string in text].tolist()
     text = re.sub('\[.*?\]', '', text)
     text = re.sub('https?://\S+|www\.\S+', '', text)
     text = re.sub('<.*?>+', '', text)
