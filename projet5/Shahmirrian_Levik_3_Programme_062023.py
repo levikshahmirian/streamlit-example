@@ -33,7 +33,7 @@ def tags_list_change():
 query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
 
-def load_model(img):
+def load_apply_model(img):
 
     # load model into new model
     pickled_model = pickle.load(open('model.pkl', 'rb'))
@@ -42,11 +42,11 @@ def load_model(img):
     preds = pickled_model.predict(x)
 
 
-"""Développer les contractions"""
+#Développer les contractions"""
 def Expand_the_Contractions(text):
     return contractions.fix(text)
 
-"""applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
+#applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
    nlp = sp.load("en_core_web_sm")
    doc = nlp(text)
@@ -54,9 +54,9 @@ def lemmatize(text):
    return ' '.join(tokens)
 
 def preprocess_text(text):
-    '''Make text lowercase, remove text in square brackets,remove links,remove punctuation
-    and remove words containing numbers.'''
-    text = text.lower()
+    #Make text lowercase, remove text in square brackets,remove links,remove punctuation
+    #and remove words containing numbers.'''
+    text = [each_string.lower() for each_string in text]
     text = re.sub('\[.*?\]', '', text)
     text = re.sub('https?://\S+|www\.\S+', '', text)
     text = re.sub('<.*?>+', '', text)
@@ -65,7 +65,7 @@ def preprocess_text(text):
     text = re.sub('\w*\d\w*', '', text)
     return text
 
-"""supprimer les interligne"""
+#supprimer les interligne"""
 def remove_line_breaks(text):
     text = text.replace('\r', ' ').replace('\n', ' ')
     return text
