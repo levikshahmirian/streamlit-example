@@ -92,7 +92,7 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
     
 
 #query_title = query_title
-#st.session_state.options =  load_apply_model(query_title)
+st.session_state.options =  load_apply_model(query_title)
 
 
 tags = st.sidebar.multiselect(
