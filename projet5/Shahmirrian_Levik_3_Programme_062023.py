@@ -85,10 +85,7 @@ def remove_line_breaks(text):
     text = text.replace('\r', ' ').replace('\n', ' ')
     return text
 
-# removing stopwords
-def remove_stopwords(text):
-    words = [w for w in text if w not in stopwords.words('english')]
-    return words 
+
 
 def clean_text(text):
     _steps = [
@@ -96,7 +93,6 @@ def clean_text(text):
     lowercase,
     remove_line_breaks,
     Expand_the_Contractions,
-    remove_stopwords,
     lemmatize
     ]
     for step in _steps:
