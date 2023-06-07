@@ -67,3 +67,5 @@ keras
 tensorflow
 nltk
 contractions
+spacy
+re
