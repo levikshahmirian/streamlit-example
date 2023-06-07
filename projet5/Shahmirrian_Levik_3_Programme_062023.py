@@ -29,6 +29,9 @@ nlp = sp.load("en_core_web_sm")
 st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
+st.session_state.options = " "
+st.session_state.default = " "
+
 def tags_list_change():
     init_options = tags_list
 
