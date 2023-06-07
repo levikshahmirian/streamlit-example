@@ -15,7 +15,7 @@ import string
 import re
 import spacy as sp
 
-nlp = sp.load("en_core_web_sm")
+
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
 st.sidebar.header("Choisissez les tags:")
@@ -48,37 +48,27 @@ def Expand_the_Contractions(text):
 
 """applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
+   nlp = sp.load("en_core_web_sm")
    doc = nlp(text)
    tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit)]
    return ' '.join(tokens)
 
-
-""" Imprimer la chaîne après avoir supprimé les balises"""
-def RemoveHTMLTags(text):
-    return re.compile(r'<[^>]+>').sub('', text)
+def preprocess_text(text):
+    '''Make text lowercase, remove text in square brackets,remove links,remove punctuation
+    and remove words containing numbers.'''
+    text = text.lower()
+    text = re.sub('\[.*?\]', '', text)
+    text = re.sub('https?://\S+|www\.\S+', '', text)
+    text = re.sub('<.*?>+', '', text)
+    text = re.sub('[%s]' % re.escape(string.punctuation), '', text)
+    text = re.sub('\n', '', text)
+    text = re.sub('\w*\d\w*', '', text)
+    return text
 
 """supprimer les interligne"""
 def remove_line_breaks(text):
     text = text.replace('\r', ' ').replace('\n', ' ')
     return text
-
-"""supprimer la ponctuation"""
-def remove_punctuation(text):
-    re_replacements = re.compile("__[A-Z]+__")  # such as __NAME__, __LINK__
-    re_punctuation = re.compile("[%s]" % re.escape(string.punctuation))
-    '''Échappez tous les caractères du modèle sauf les lettres et les chiffres ASCII'''
-    tokens = word_tokenize(text.lower())
-    tokens_zero_punctuation = []
-    for token in tokens:
-        if not re_replacements.match(token):
-            token = re_punctuation.sub(" ", token)
-        tokens_zero_punctuation.append(token)
-    return ' '.join(tokens_zero_punctuation)
-
-def lowercase(text):
-    #text_low = [token.lower() for token in word_tokenize(text)]
-    text_low= word_tokenize(text.lower())
-    return text_low
 
 # removing stopwords
 def remove_stopwords(text):
@@ -87,13 +77,11 @@ def remove_stopwords(text):
 
 def clean_text(text):
     _steps = [
-    RemoveHTMLTags,
+    preprocess_text,
     remove_line_breaks,
     Expand_the_Contractions,
-    remove_punctuation,
     remove_stopwords,
     lemmatize
-
     ]
     for step in _steps:
         text=step(text)
@@ -102,7 +90,7 @@ def clean_text(text):
     
 
 query_title = query_title.split(' ') 
-st.session_state.options = query_title
+st.session_state.options = clean_text(query_title)
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
