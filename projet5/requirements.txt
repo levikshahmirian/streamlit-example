@@ -66,3 +66,4 @@ streamlit_autorefresh
 keras
 tensorflow
 nltk
+contractions
