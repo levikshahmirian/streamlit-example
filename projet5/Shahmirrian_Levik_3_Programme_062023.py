@@ -16,25 +16,8 @@ import re
 import spacy as sp
 
 
-
-st.set_page_config(page_title="Poser votre question", layout="wide")
-st.sidebar.header("Choisissez les tags:")
-init_options = [""]
-tags_list = [""]
-
-sp.cli.download("en_core_web_sm")
-nlp = sp.load("en_core_web_sm")
-
-# ---- MAINPAGE ----
-st.title("Formation_ML Projet 5 ")
-st.markdown("##")
-
 def tags_list_change():
     init_options = tags_list
-
-
-query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
 
 def load_apply_model(img):
 
@@ -79,10 +62,6 @@ def lowercase(text):
 
     return text.lower()
 
-
-
-
-
 def clean_text(text):
     _steps = [
     RemoveHTMLTags,
@@ -94,7 +73,11 @@ def clean_text(text):
         text=step(text)
     return text   
 
-    
+
+
+st.set_page_config(page_title="Poser votre question", layout="wide")
+st.sidebar.header("Choisissez les tags:")
+
 
 #query_title = query_title
 st.session_state.options = clean_text(query_title).split(' ') 
@@ -112,3 +95,24 @@ ms = st.sidebar.multiselect(
 
 st.write('##### Valid Selection')
 st.write(str(ms))
+
+
+init_options = [""]
+tags_list = [""]
+
+sp.cli.download("en_core_web_sm")
+nlp = sp.load("en_core_web_sm")
+
+# ---- MAINPAGE ----
+st.title("Formation_ML Projet 5 ")
+st.markdown("##")
+
+
+query_body = st.text_area("Ask a question about the document")
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
+
+
+
+    
+
+
