@@ -29,6 +29,8 @@ nlp = sp.load("en_core_web_sm")
 st.title("Formation_ML Projet 5 ")
 st.markdown("##")
 
+def tags_list_change():
+    init_options = load_apply_model(query_title)
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
@@ -81,7 +83,7 @@ def load_apply_model(clean_text):
     preds = pickled_model.predict(x)
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= load_apply_model(query_title))
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change()
 #Développer les contractions"""
 #def Expand_the_Contractions(text):
     #return contractions.fix(text)
