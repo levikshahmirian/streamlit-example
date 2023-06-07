@@ -79,8 +79,9 @@ def load_apply_model(clean_text):
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
-    x = clean_text(query_title).split(' ') 
-    preds = pickled_model.predict(x)
+    #x = clean_text(query_title).split(' ') 
+    #preds = pickled_model.predict(x)
+    st.write(query_title)
 
 query_body = st.text_area("Ask a question about the document")
 query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
