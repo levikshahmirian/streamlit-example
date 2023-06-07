@@ -32,6 +32,8 @@ def load_model(img):
     x = preprocess_input(np.expand_dims(img.copy(), axis=0))
     preds = pickled_model.predict(x)
 
+    
+
 query_title = query_title.split(' ') 
 st.session_state.options = query_title
 
