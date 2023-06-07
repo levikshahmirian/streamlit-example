@@ -33,18 +33,18 @@ def tags_list_change():
     init_options = tags_list
 
 
-query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
 
-def load_apply_model(img):
+
+def load_apply_model(clean_text):
 
     # load model into new model
     pickled_model = pickle.load(open('model.pkl', 'rb'))
 
-    x = preprocess_input(np.expand_dims(img.copy(), axis=0))
+    x = clean_text(query_title).split(' ') 
     preds = pickled_model.predict(x)
 
-
+query_body = st.text_area("Ask a question about the document")
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= load_apply_model())
 #Développer les contractions"""
 #def Expand_the_Contractions(text):
     #return contractions.fix(text)
