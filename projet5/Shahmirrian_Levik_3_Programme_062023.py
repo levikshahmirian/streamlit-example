@@ -53,17 +53,25 @@ def lemmatize(text):
    tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit)]
    return ' '.join(tokens)
 
-def preprocess_text(text):
-    #Make text lowercase, remove text in square brackets,remove links,remove punctuation
-    #and remove words containing numbers.'''
-    text = [each_string.lower() for each_string in text].tolist()
-    text = re.sub('\[.*?\]', '', text)
-    text = re.sub('https?://\S+|www\.\S+', '', text)
-    text = re.sub('<.*?>+', '', text)
-    text = re.sub('[%s]' % re.escape(string.punctuation), '', text)
-    text = re.sub('\n', '', text)
-    text = re.sub('\w*\d\w*', '', text)
-    return text
+def RemoveHTMLTags(text):
+    return re.compile(r'<[^>]+>').sub('', text)
+
+def lowercase(text):
+    #text_low = [token.lower() for token in word_tokenize(text)]
+    text_low= word_tokenize(text.lower())
+    return text_low
+
+def remove_punctuation(text):
+    re_replacements = re.compile("__[A-Z]+__")  # such as __NAME__, __LINK__
+    re_punctuation = re.compile("[%s]" % re.escape(string.punctuation))
+    '''Échappez tous les caractères du modèle sauf les lettres et les chiffres ASCII'''
+    tokens = word_tokenize(text.lower())
+    tokens_zero_punctuation = []
+    for token in tokens:
+        if not re_replacements.match(token):
+            token = re_punctuation.sub(" ", token)
+        tokens_zero_punctuation.append(token)
+    return ' '.join(tokens_zero_punctuation)
 
 #supprimer les interligne"""
 def remove_line_breaks(text):
@@ -77,7 +85,9 @@ def remove_stopwords(text):
 
 def clean_text(text):
     _steps = [
-    preprocess_text,
+    RemoveHTMLTags,
+    lowercase,
+    remove_punctuation,
     remove_line_breaks,
     Expand_the_Contractions,
     remove_stopwords,
