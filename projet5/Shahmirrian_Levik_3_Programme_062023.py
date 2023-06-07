@@ -79,17 +79,6 @@ def lowercase(text):
 
     return text.lower()
 
-def remove_punctuation(text):
-    re_replacements = re.compile("__[A-Z]+__")  # such as __NAME__, __LINK__
-    re_punctuation = re.compile("[%s]" % re.escape(string.punctuation))
-    #Échappez tous les caractères du modèle sauf les lettres et les chiffres ASCII'''
-    tokens = word_tokenize(text.lower())
-    tokens_zero_punctuation = []
-    for token in tokens:
-        if not re_replacements.match(token):
-            token = re_punctuation.sub(" ", token)
-        tokens_zero_punctuation.append(token)
-    return ' '.join(tokens_zero_punctuation)
 
 #supprimer les interligne"""
 def remove_line_breaks(text):
@@ -105,7 +94,6 @@ def clean_text(text):
     _steps = [
     RemoveHTMLTags,
     lowercase,
-    remove_punctuation,
     remove_line_breaks,
     Expand_the_Contractions,
     remove_stopwords,
