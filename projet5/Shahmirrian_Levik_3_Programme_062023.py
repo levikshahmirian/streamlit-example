@@ -54,7 +54,9 @@ def lemmatize(text):
    return ' '.join(tokens)
 
 def RemoveHTMLTags(text):
-    return re.compile(r'<[^>]+>').sub('', text)
+    nlp = sp.load("en_core_web_sm")
+    doc = nlp(text.itertext())
+    return doc
 
 def lowercase(text):
     #text_low = [token.lower() for token in word_tokenize(text)]
@@ -64,7 +66,7 @@ def lowercase(text):
 def remove_punctuation(text):
     re_replacements = re.compile("__[A-Z]+__")  # such as __NAME__, __LINK__
     re_punctuation = re.compile("[%s]" % re.escape(string.punctuation))
-    '''Échappez tous les caractères du modèle sauf les lettres et les chiffres ASCII'''
+    #Échappez tous les caractères du modèle sauf les lettres et les chiffres ASCII'''
     tokens = word_tokenize(text.lower())
     tokens_zero_punctuation = []
     for token in tokens:
