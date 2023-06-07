@@ -53,13 +53,26 @@ def Expand_the_Contractions(text):
 def lemmatize(text):
    
    doc = nlp(text)
-   tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit)]
+   tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit or token.like_url)]
    return ' '.join(tokens)
 
+
 def RemoveHTMLTags(text):
-    
-    doc = nlp(text.itertext())
-    return doc
+    tag = False
+    quote = False
+    out = ""
+
+    for c in text:
+            if c == '<' and not quote:
+                tag = True
+            elif c == '>' and not quote:
+                tag = False
+            elif (c == '"' or c == "'") and tag:
+                quote = not quote
+            elif not tag:
+                out = out + c
+
+    return out
 
 def lowercase(text):
     #text_low = [token.lower() for token in word_tokenize(text)]
