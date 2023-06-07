@@ -76,9 +76,8 @@ def RemoveHTMLTags(text):
     return out
 
 def lowercase(text):
-    text_low = [token.lower() for token in word_tokenize(text)]
-    #text_low= word_tokenize(text.lower())
-    return text_low
+
+    return text.lower()
 
 def remove_punctuation(text):
     re_replacements = re.compile("__[A-Z]+__")  # such as __NAME__, __LINK__
