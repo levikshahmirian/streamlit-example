@@ -97,9 +97,9 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
 #st.session_state.options =  load_apply_model(query_title)
 
 
-options = st.sidebar.multiselect(
+options = st.sid.multiselect(
     'What are your favorite colors',
-    options= tags_list,
-    default= [' '])
+    ['Green', 'Yellow', 'Red', 'Blue'],
+    ['Yellow', 'Red'])
 
 st.write('You selected:', options)
