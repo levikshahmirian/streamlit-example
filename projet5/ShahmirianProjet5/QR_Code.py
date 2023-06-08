@@ -15,13 +15,11 @@ def load_image(img):
 
 st.subheader("Create QR Code")
 with st.form(key='myqr_form'):
-	raw_text = st.text_area("Input Kode Outlet disini (Kode Huruf Menggunakan Huruf Kapital)", max_chars=8)
+	body_text = st.text_area("Input Kode Outlet disini (Kode Huruf Menggunakan Huruf Kapital)", max_chars=8)
+	title_text = st.text_area("Input Kode Outlet disini (Kode Huruf Menggunakan Huruf Kapital)", max_chars=8)
 	submit_button = st.form_submit_button("Generate")
 	
 
-
-	
-	#st.write(df3)
 
 if submit_button :
 	col1, col2 = st.columns(2)
