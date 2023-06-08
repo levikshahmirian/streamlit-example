@@ -5,7 +5,7 @@ import os
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
 
-from keras.models import model_from_json
+
 from keras.models import load_model
 from keras.applications.vgg16 import preprocess_input, decode_predictions
 import pickle
