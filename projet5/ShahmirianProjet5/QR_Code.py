@@ -40,16 +40,12 @@ with st.form(key='myqr_form'):
 if submit_button :
 	col1, col2 = st.columns(2)
 	with col1:
-		# Add Data
-		qr.add_data(df3)
-		# Generate
-		qr.make(fit=True)
-		img = qr.make_image(fill_color='black', back_color='white')
+
 
 		# Filename
 		img_filename = "{}.png".format(raw_text)
 		path_for_images = os.path.join(img_filename)
-		img.save(path_for_images)
+		
 
 		final_img = load_image(path_for_images)
 		st.image(final_img)
