@@ -2,10 +2,10 @@ streamlit
 pillow
 openpyxl == 3.0.10
 keras
-tensorflow==2.12.0
+tensorflow
 nltk
 contractions
 spacy
 scikit-learn
 pandas
-numpy==1.24
+numpy
