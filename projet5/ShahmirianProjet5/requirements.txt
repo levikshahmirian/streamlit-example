@@ -4,3 +4,13 @@ numpy
 qrcode
 pillow
 openpyxl == 3.0.10
+keras
+tensorflow==2.12.0
+nltk
+contractions
+spacy
+scikit-learn
+streamlit
+pandas
+numpy==1.24
+keras
