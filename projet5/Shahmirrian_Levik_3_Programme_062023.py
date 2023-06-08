@@ -14,7 +14,7 @@ import re
 import spacy as sp
 import sklearn
 import functools
-import plotly.express as px
+
 
 chart = functools.partial(st.plotly_chart, use_container_width=True)
 
