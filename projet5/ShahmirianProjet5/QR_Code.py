@@ -5,10 +5,8 @@ import numpy as np
 import os
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
-import qrcode
-qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, 
-	box_size=10, 
-	border=14)
+
+
 
 
 def load_image(img):
