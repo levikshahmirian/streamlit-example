@@ -12,7 +12,7 @@ with st.form(key='myqr_form'):
 	body_text = st.text_area("Détailler votre question)")
 
 	title_text = st.text_area("Donner un titre à votre question")
-	submit_button = st.form_submit_button("Generate")
+	submit_button = st.form_submit_button("Enregistrer")
 	
 
 
