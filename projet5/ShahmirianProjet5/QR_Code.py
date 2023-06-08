@@ -27,7 +27,7 @@ if submit_button :
 
 
 		# Filename
-		img_filename = "{}.png".format(raw_text)
+		img_filename = "{}.png".format(title_text)
 		path_for_images = os.path.join(img_filename)
 		
 
