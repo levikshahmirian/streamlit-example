@@ -16,7 +16,8 @@ def load_image(img):
 st.subheader("Create QR Code")
 with st.form(key='myqr_form'):
 	body_text = st.text_area("Input Kode Outlet disini (Kode Huruf Menggunakan Huruf Kapital)", max_chars=8)
-	title_text = st.text_area("Input Kode Outlet disini (Kode Huruf Menggunakan Huruf Kapital)", max_chars=8)
+
+	title_text = st.text_area("Entrez un titre pour votre question", max_chars=8)
 	submit_button = st.form_submit_button("Generate")
 	
 
