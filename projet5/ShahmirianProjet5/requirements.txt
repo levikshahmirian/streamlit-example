@@ -1,5 +1,4 @@
-streamlit==1.23.1
-qrcode
+streamlit
 pillow
 openpyxl == 3.0.10
 keras
