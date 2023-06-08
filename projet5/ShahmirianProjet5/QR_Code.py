@@ -9,9 +9,9 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 
 st.subheader("Poser votre question")
 with st.form(key='myqr_form'):
-	body_text = st.text_area("Détailler votre question)", max_chars=8)
+	body_text = st.text_area("Détailler votre question)")
 
-	title_text = st.text_area("Donner un titre à votre question", max_chars=2)
+	title_text = st.text_area("Donner un titre à votre question")
 	submit_button = st.form_submit_button("Generate")
 	
 
