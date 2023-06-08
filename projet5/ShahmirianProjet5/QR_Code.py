@@ -17,7 +17,7 @@ st.subheader("Poser votre question")
 with st.form(key='myqr_form'):
 	body_text = st.text_area("Détailler votre question)", max_chars=8)
 
-	title_text = st.text_area("Donner un titre à votre question", max_chars=8)
+	title_text = st.text_area("Donner un titre à votre question", max_chars=2)
 	submit_button = st.form_submit_button("Generate")
 	
 
