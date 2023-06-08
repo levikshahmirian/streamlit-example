@@ -8,3 +8,7 @@ nltk
 contractions
 spacy
 scikit-learn
+streamlit
+pandas
+numpy
+keras
