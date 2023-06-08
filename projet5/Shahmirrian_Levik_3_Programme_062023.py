@@ -95,14 +95,35 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
 
     
 
-#query_title = query_title
-st.session_state.options =  load_apply_model(query_title)
+init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
-tags = st.sidebar.multiselect(
-    'What are your favorite colors',
+if 'options' not in st.session_state:
+    st.session_state.options = init_options
+if 'default' not in st.session_state:
+    st.session_state.default = []
+
+
+ms = st.sidebar.multiselect(
+    label='Pick a number',
     options=st.session_state.options,
     default=st.session_state.default
-    )
+)
 
-st.write('You selected:', tags)
+# If 1 is selected, remove the 2 and rerun.
+if 1 in ms:
+    if 2 in st.session_state.options:
+        st.session_state.options.remove(2)
+        st.session_state.default = ms
+        st.experimental_rerun()
+
+# Else if 2 is selected, remove the 1 and rerun.
+elif 2 in ms:
+    if 1 in st.session_state.options:
+        st.session_state.options.remove(1)
+        st.session_state.default = ms
+        st.experimental_rerun()
+
+
+st.write('##### Valid Selection')
+st.write(str(ms))
