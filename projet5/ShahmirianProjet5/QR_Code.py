@@ -9,6 +9,7 @@ from keras.models import load_model
 from keras.applications.vgg16 import preprocess_input, decode_predictions
 import pickle
 
+from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import contractions
@@ -57,10 +58,22 @@ def load_apply_model(text):
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
-    x = clean_text(text).split()
+    # Initialisation du vectoriseur TF-IDF avec des mots vides
+    vectorizer_Title_tfidf = TfidfVectorizer(stop_words='english')
+    
+
+    # Initialisation du vecteur TF-IDF avec des mots vides 
+    # Création de vocabulaire avec nos corpus
+    # Exclure les 10 premiers documents à des fins de test
+    corpora_Lemm_Title = clean_text(text).split()
+    x = vectorizer_Title_tfidf.fit_transform(corpora_Lemm_Title)
+    feature_names_Title = vectorizer_Title_tfidf.get_feature_names_out()
+
+
+    #x = clean_text(text).split()
     #preds = pickled_model.predict(x)
     #st.write(str(query_title))
-    return x
+    return corpora_Lemm_Title
 
 
 
