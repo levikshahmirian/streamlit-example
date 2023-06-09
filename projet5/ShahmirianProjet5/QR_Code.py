@@ -87,9 +87,14 @@ with st.form(key='myqr_form'):
 	submit_button = st.form_submit_button("Enregistrer")
 
 
-if "neighborhoods_selection" in st.session_state and len(st.session_state.neighborhoods_selection) > 0 :
+if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
-     
+else:
+    st.warning("No suggested categories found. Try a different search.")
+
+
+
+
 if title_text :
     load_apply_model(title_text) 
 
