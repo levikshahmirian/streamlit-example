@@ -95,7 +95,7 @@ query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_
 
     
 
-init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#init_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 if 'options' not in st.session_state:
