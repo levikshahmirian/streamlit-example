@@ -67,6 +67,7 @@ def clean_text(text):
 def load_apply_model(text):
 
     clean_text = text
+    st.write(text)
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
