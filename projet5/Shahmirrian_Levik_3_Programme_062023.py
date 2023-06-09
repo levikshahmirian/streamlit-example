@@ -76,9 +76,8 @@ def clean_text(text):
     return text   
 
 
-def load_apply_model():
+def load_apply_model(clean_text):
 
-    clean_text = query_title
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
