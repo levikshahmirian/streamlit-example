@@ -33,21 +33,17 @@ def lemmatize(text):
 	tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit or token.like_url)]
 	return ' '.join(tokens)
 
-def RemoveHTMLTags(text):
+def removeSpecialChar(text):
     char_remov = ['"', '(', ')', "'", '[', ']']
     for char in char_remov:
         # replace() "returns" an altered string
         clean_text = text.replace(char, " ")
     return str(clean_text)
 
-def lowercase(text):
-
-    return text.lower()
 
 def clean_text(text):
     _steps = [
-    RemoveHTMLTags,
-    #lowercase,
+    removeSpecialChar,
     #Expand_the_Contractions,
     lemmatize
     ]
@@ -62,7 +58,7 @@ def load_apply_model(text):
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
     x = clean_text(text).split()
-    #preds = pickled_model.predict(x)
+    preds = pickled_model.predict(x)
     #st.write(str(query_title))
     return x
 
