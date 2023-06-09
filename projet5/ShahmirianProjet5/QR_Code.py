@@ -67,14 +67,14 @@ def load_apply_model(text):
     # Création de vocabulaire avec nos corpus
     # Exclure les 10 premiers documents à des fins de test
     corpora_Lemm_Title = clean_text(text).split()
-    #x = vectorizer_Title_tfidf.fit_transform(corpora_Lemm_Title)
-    #feature_names_Title = vectorizer_Title_tfidf.get_feature_names_out()
+    x = vectorizer_Title_tfidf.fit_transform(corpora_Lemm_Title)
+    feature_names_Title = vectorizer_Title_tfidf.get_feature_names_out()
 
 
     #x = clean_text(text).split()
     #preds = pickled_model.predict(x)
     st.write(corpora_Lemm_Title)
-    return corpora_Lemm_Title
+    return feature_names_Title
 
 
 
