@@ -58,7 +58,7 @@ def load_apply_model(text):
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
     x = clean_text(text).split()
-    preds = pickled_model.predict(x)
+    #preds = pickled_model.predict(x)
     #st.write(str(query_title))
     return x
 
