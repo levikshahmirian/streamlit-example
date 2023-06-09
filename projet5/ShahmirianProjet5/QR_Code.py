@@ -109,21 +109,22 @@ if submit_button :
 
 
 
-if 'options' not in st.session_state:
-    st.session_state.options = init_options
 
-if 'default' not in st.session_state:
-    st.session_state.default = []
-
-
-ms = st.multiselect(
-    label='Pick a number', key="tags_selection",
-    options=st.session_state.options,
-    default=st.session_state.default
-)
 
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
-     st.session_state.tags_selection.setdefault = title_text
+     if 'options' not in st.session_state:
+        st.session_state.options = init_options
+
+     if 'default' not in st.session_state:
+        st.session_state.default = []
+
+
+     ms = st.multiselect(
+        label='Pick a number', key="tags_selection",
+        options=title_text,
+        default=st.session_state.default
+    )
+     
 else:
     st.warning("No suggested categories found. Try a different search.")
