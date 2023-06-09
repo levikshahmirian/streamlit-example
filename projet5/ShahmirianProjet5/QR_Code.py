@@ -82,7 +82,7 @@ def load_apply_model(text):
 st.subheader("Poser votre question")
 with st.form(key='myqr_form'):
 	body_text = st.text_area("Détailler votre question)")
-	title_text = st.text_input("Donner un titre à votre question",autocomplete=" ")
+	title_text = st.text_input("Donner un titre à votre question",autocomplete=" ", on_change=tags_list_change())
 
 	submit_button = st.form_submit_button("Enregistrer")
 	
