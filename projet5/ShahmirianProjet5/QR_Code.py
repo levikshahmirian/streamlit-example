@@ -124,6 +124,6 @@ ms = st.multiselect(
 
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
-     ms.append(title_text)
+     ms=title_text
 else:
     st.warning("No suggested categories found. Try a different search.")
