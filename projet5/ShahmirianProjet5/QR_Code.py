@@ -34,21 +34,12 @@ def lemmatize(text):
 	return ' '.join(tokens)
 
 def RemoveHTMLTags(text):
-    tag = False
-    quote = False
-    out = ""
 
-    for c in text:
-            if c == '<' and not quote:
-                tag = True
-            elif c == '>' and not quote:
-                tag = False
-            elif (c == '"' or c == "'") and tag:
-                quote = not quote
-            elif not tag:
-                out = out + c
-
-    return out
+    char_remov = ['"', '(', ')','']
+    for char in char_remov:
+        # replace() "returns" an altered string
+        string = string.replace(char, " ")
+    return char
 
 def lowercase(text):
 
