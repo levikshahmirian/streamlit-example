@@ -57,7 +57,8 @@ def clean_text(text):
 def load_apply_model(text):
     #st.write(text)
     # load model into new model
-    pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
+    pickled_model = pickle.load(open('model.pkl', 'rb'))
+    pickled_vectorizer = pickle.load(open('vectorizer.pickle', 'rb'))
 
     # Initialisation du vectoriseur TF-IDF avec des mots vides
     vectorizer_Title_tfidf = TfidfVectorizer(stop_words='english')
@@ -67,12 +68,12 @@ def load_apply_model(text):
     # Création de vocabulaire avec nos corpus
     # Exclure les 10 premiers documents à des fins de test
     corpora_Lemm_Title = clean_text(text).split()
-    x = vectorizer_Title_tfidf.fit_transform(corpora_Lemm_Title)
-    feature_names_Title = vectorizer_Title_tfidf.get_feature_names_out()
+    x = pickled_vectorizer.fit_transform(corpora_Lemm_Title)
+    feature_names_Title = pickled_vectorizer.get_feature_names_out()
 
 
     #x = clean_text(text).split()
-    preds = pickled_model.predict(corpora_Lemm_Title)
+    preds = pickled_model.predict(x)
     st.write(corpora_Lemm_Title)
     return feature_names_Title
 
