@@ -57,11 +57,8 @@ def clean_text(text):
 def load_apply_model(text):
     #st.write(text)
     # load model into new model
-    pickled_model = pickle.load(open('model.pkl', 'rb'))
-    pickled_vectorizer = pickle.load(open('vectorizer.pickle', 'rb'))
-
-    # Initialisation du vectoriseur TF-IDF avec des mots vides
-    vectorizer_Title_tfidf = TfidfVectorizer(stop_words='english')
+    pickled_model = pickle.load(open('projet5/ShahmirianProjet5/model.pkl', 'rb'))
+    pickled_vectorizer = pickle.load(open('projet5/ShahmirianProjet5/vectorizer.pickle', 'rb'))
     
 
     # Initialisation du vecteur TF-IDF avec des mots vides 
