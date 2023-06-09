@@ -18,6 +18,8 @@ import spacy as sp
 import sklearn
 import functools
 
+
+st.set_page_config(page_title="Poser votre question", layout="wide")
 init_options = [" "]
 
 def tags_list_change():
