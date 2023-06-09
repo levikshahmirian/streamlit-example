@@ -39,7 +39,7 @@ def RemoveHTMLTags(text):
     for char in char_remov:
         # replace() "returns" an altered string
         text = text.replace(char, " ")
-    return text.tolist()
+    return text.split(" ").tolist()
 
 def lowercase(text):
 
