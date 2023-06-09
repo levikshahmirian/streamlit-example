@@ -18,6 +18,7 @@ import re
 import spacy as sp
 import sklearn
 import functools
+import favmodellibrary
 
 
 st.set_page_config(page_title="Poser votre question")
