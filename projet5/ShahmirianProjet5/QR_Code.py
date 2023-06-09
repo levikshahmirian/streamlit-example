@@ -46,7 +46,7 @@ def RemoveHTMLTags(text):
             elif (c == '"' or c == "'") and tag:
                 quote = not quote
             elif not tag:
-                out = out + " " + c
+                out = out + c
 
     return out
 
