@@ -19,7 +19,7 @@ import sklearn
 import functools
 
 
-st.set_page_config(page_title="Poser votre question", layout="wide")
+st.set_page_config(page_title="Poser votre question")
 init_options = [" "]
 
 def tags_list_change():
@@ -67,7 +67,7 @@ def load_apply_model(text):
 st.subheader("Poser votre question")
 
 body_text = st.text_area("Détailler votre question)")
-title_text = st.text_input("Donner un titre à votre question",autocomplete=" ", on_change=tags_list_change(), key="user_title_text")
+title_text = st.text_input("Donner un titre à votre question",autocomplete=" ", key="user_title_text")
 
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
