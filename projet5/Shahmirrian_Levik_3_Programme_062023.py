@@ -16,8 +16,6 @@ import sklearn
 import functools
 
 
-chart = functools.partial(st.plotly_chart, use_container_width=True)
-
 
 st.set_page_config(page_title="Poser votre question", layout="wide")
 st.sidebar.header("Choisissez les tags:")
