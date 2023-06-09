@@ -20,9 +20,6 @@ import sklearn
 import functools
 
 
-# loading the trained model
-pickle_in = open('classifier.pkl', 'rb') 
-classifier = pickle.load(pickle_in)
 
 
 
