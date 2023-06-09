@@ -84,7 +84,7 @@ st.subheader("Poser votre question")
 body_text = st.text_area("Détailler votre question)")
 title_text = st.text_input("Donner un titre à votre question",autocomplete=" ", on_change=tags_list_change(), key="user_title_text")
 
-submit_button = st.form_submit_button("Enregistrer")
+submit_button = st.submit_button("Enregistrer")
 
 
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
