@@ -80,13 +80,13 @@ def load_apply_model(text):
 st.subheader("Poser votre question")
 with st.form(key='myqr_form'):
 	body_text = st.text_area("Détailler votre question)")
-
 	title_text = st.text_input("Donner un titre à votre question")
+
 	submit_button = st.form_submit_button("Enregistrer")
 	
+if title_text :
+    load_apply_model(title_text) 
 
-if title_text != "":
-    load_apply_model(title_text)
 
 if submit_button :
 	col1, col2 = st.columns(2)
