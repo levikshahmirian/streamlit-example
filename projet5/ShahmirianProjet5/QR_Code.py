@@ -86,7 +86,7 @@ if "user_title_text" in st.session_state and len(st.session_state.user_title_tex
 
      ms = st.multiselect(
         label='Pick a number', key="tags_selection",
-        options=load_apply_model(title_text).split(" "),
+        options=load_apply_model(title_text),
         default=st.session_state.default
     )    
 else:
