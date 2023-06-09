@@ -26,8 +26,6 @@ import functools
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
 
-def tags_list_change():
-    init_options = ["Salut, c'est moi "]#tags_list
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
@@ -75,7 +73,7 @@ def load_apply_model(text):
 
     #x = clean_text(text).split()
     #preds = pickled_model.predict(x)
-    #st.write(str(query_title))
+    st.write(corpora_Lemm_Title)
     return corpora_Lemm_Title
 
 
@@ -86,7 +84,7 @@ body_text = st.text_area("Détailler votre question)")
 title_text = st.text_input("Donner un titre à votre question",autocomplete=" ", key="user_title_text")
 
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
-     st.write(title_text)
+     #st.write(title_text)
      if 'options' not in st.session_state:
         st.session_state.options = init_options
 
@@ -103,6 +101,5 @@ else:
 
 submit_button = st.button("Enregistrer")
 if submit_button :
-	
 	st.write("Votre question est enregistrée")
 
