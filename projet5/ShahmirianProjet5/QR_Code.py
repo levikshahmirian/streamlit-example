@@ -116,10 +116,3 @@ ms = st.multiselect(
     options=st.session_state.options,
     default=st.session_state.default
 )
-
-def main(user: object):
-    st.write(f"You're logged in as {st.session_state['user']['email']}")
-
-    load_apply_model(code=user['refreshToken'])
-
-    st.write("Hello World")
