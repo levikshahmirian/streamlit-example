@@ -117,13 +117,13 @@ if 'default' not in st.session_state:
 
 
 ms = st.multiselect(
-    label='Pick a number',
+    label='Pick a number', key="tags_selection",
     options=st.session_state.options,
     default=st.session_state.default
 )
 
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
-     options = title_text
+     st.session_state.tags_selection.setdefault = title_text
 else:
     st.warning("No suggested categories found. Try a different search.")
