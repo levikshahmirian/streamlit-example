@@ -89,9 +89,6 @@ submit_button = st.button("Enregistrer")
 
 
 
-if title_text :
-    load_apply_model(title_text) 
-
 
 if submit_button :
 	col1, col2 = st.columns(2)
