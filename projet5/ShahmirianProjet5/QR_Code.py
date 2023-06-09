@@ -18,9 +18,10 @@ import spacy as sp
 import sklearn
 import functools
 
+init_options = [" "]
 
 def tags_list_change():
-    init_options = [" "]#tags_list
+    init_options = ["Salut, c'est moi "]#tags_list
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
@@ -78,7 +79,7 @@ st.subheader("Poser votre question")
 with st.form(key='myqr_form'):
 	body_text = st.text_area("Détailler votre question)")
 
-	title_text = st.text_area("Donner un titre à votre question", on_change= tags_list_change())
+	title_text = st.text_input("Donner un titre à votre question", on_change= tags_list_change())
 	submit_button = st.form_submit_button("Enregistrer")
 	
 
