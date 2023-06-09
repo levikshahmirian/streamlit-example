@@ -57,13 +57,11 @@ def clean_text(text):
 
 
 def load_apply_model(text):
-
-    
     #st.write(text)
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
-    x = clean_text(text) 
+    x = clean_text(text).split()
     #preds = pickled_model.predict(x)
     #st.write(str(query_title))
     return x
