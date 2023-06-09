@@ -106,7 +106,7 @@ if 'default' not in st.session_state:
     st.session_state.default = []
 
 
-ms = st.sidebar.multiselect(
+ms = st.multiselect(
     label='Pick a number',
     options=st.session_state.options,
     default=st.session_state.default
