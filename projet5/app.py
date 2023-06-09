@@ -1,6 +1,4 @@
 import streamlit as st 
-import api_snowflake as api 
-import api_openai as oai 
 
 st.set_page_config(page_title="NYC Venue Search", layout="wide", initial_sidebar_state="expanded")
 
@@ -25,7 +23,7 @@ def handler_load_neighborhoods():
     selected_borough = 'Manhattan'
     if "borough_selection" in st.session_state and st.session_state.borough_selection != "":
         selected_borough = st.session_state.borough_selection
-    neighborhoods = api.get_neighborhoods(selected_borough)
+    neighborhoods = ["1","2","name"]
     st.session_state.neighborhood_list = [n['NAME'] for n in neighborhoods]
 
 def handler_search_venues():
