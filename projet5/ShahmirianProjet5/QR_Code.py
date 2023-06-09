@@ -64,8 +64,9 @@ def clean_text(text):
     return text   
 
 
-def load_apply_model(clean_text):
+def load_apply_model(text):
 
+    clean_text = text
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
@@ -79,10 +80,12 @@ st.subheader("Poser votre question")
 with st.form(key='myqr_form'):
 	body_text = st.text_area("Détailler votre question)")
 
-	title_text = st.text_input("Donner un titre à votre question", on_change= tags_list_change())
+	title_text = st.text_input("Donner un titre à votre question")
 	submit_button = st.form_submit_button("Enregistrer")
 	
 
+if title_text != "":
+    load_apply_model(title_text)
 
 if submit_button :
 	col1, col2 = st.columns(2)
