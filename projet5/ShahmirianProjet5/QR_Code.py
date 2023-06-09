@@ -87,12 +87,6 @@ title_text = st.text_input("Donner un titre à votre question",autocomplete=" ",
 submit_button = st.button("Enregistrer")
 
 
-if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
-     st.write(title_text)
-else:
-    st.warning("No suggested categories found. Try a different search.")
-
-
 
 
 if title_text :
@@ -113,7 +107,7 @@ if submit_button :
 		st.info('Nama Toko')
 		st.write("df4")
 
-init_options = ["1, 2, 3, 4, 5, 6, 7, 8, 9, 10"]
+init_options = [" "]
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
@@ -127,3 +121,9 @@ ms = st.multiselect(
     options=st.session_state.options,
     default=st.session_state.default
 )
+
+if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
+     st.write(title_text)
+     st.session_state.options.append(title_text)
+else:
+    st.warning("No suggested categories found. Try a different search.")
