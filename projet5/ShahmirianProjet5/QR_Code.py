@@ -88,26 +88,6 @@ submit_button = st.button("Enregistrer")
 
 
 
-
-
-if submit_button :
-	col1, col2 = st.columns(2)
-	with col1:
-
-
-		# Filename
-		img_filename = "{}.png".format(title_text)
-		path_for_images = os.path.join(img_filename)
-
-
-	with col2:
-		st.info('Nama Toko')
-		st.write("df4")
-
-
-
-
-
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
      if 'options' not in st.session_state:
@@ -125,3 +105,10 @@ if "user_title_text" in st.session_state and len(st.session_state.user_title_tex
      
 else:
     st.warning("No suggested categories found. Try a different search.")
+
+
+
+if submit_button :
+	
+	st.write("Votre question est enregistrée")
+
