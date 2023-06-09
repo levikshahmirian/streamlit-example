@@ -76,8 +76,9 @@ def clean_text(text):
     return text   
 
 
-def load_apply_model(clean_text):
+def load_apply_model():
 
+    clean_text = query_title
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
@@ -86,7 +87,7 @@ def load_apply_model(clean_text):
     st.write(str(query_title))
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= load_apply_model())
 #Développer les contractions"""
 #def Expand_the_Contractions(text):
     #return contractions.fix(text)
