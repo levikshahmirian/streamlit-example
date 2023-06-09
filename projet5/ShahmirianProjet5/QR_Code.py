@@ -5,7 +5,6 @@ import os
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
 
-
 from keras.models import load_model
 from keras.applications.vgg16 import preprocess_input, decode_predictions
 import pickle
@@ -20,7 +19,6 @@ import sklearn
 import functools
 
 
-
 def tags_list_change():
     init_options = [" "]#tags_list
 
@@ -30,9 +28,7 @@ def lemmatize(text):
 	nlp = sp.load("en_core_web_sm")
 	doc = nlp(text)
 	tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit or token.like_url)]
-
 	return ' '.join(tokens)
-
 
 def RemoveHTMLTags(text):
     tag = False
@@ -101,4 +97,17 @@ if submit_button :
 		st.info('Nama Toko')
 		st.write("df4")
 
+init_options = ["1, 2, 3, 4, 5, 6, 7, 8, 9, 10"]
 
+if 'options' not in st.session_state:
+    st.session_state.options = init_options
+
+if 'default' not in st.session_state:
+    st.session_state.default = []
+
+
+ms = st.sidebar.multiselect(
+    label='Pick a number',
+    options=st.session_state.options,
+    default=st.session_state.default
+)
