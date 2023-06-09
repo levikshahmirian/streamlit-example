@@ -48,9 +48,9 @@ def lowercase(text):
 def clean_text(text):
     _steps = [
     RemoveHTMLTags,
-    #lowercase,
+    lowercase,
     #Expand_the_Contractions,
-    #lemmatize
+    lemmatize
     ]
     for step in _steps:
         text=step(text)
