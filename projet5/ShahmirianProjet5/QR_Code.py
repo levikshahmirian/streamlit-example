@@ -107,7 +107,7 @@ if submit_button :
 		st.info('Nama Toko')
 		st.write("df4")
 
-init_options = [" "]
+
 
 if 'options' not in st.session_state:
     st.session_state.options = init_options
