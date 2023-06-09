@@ -9,4 +9,3 @@ spacy
 scikit-learn
 pandas
 numpy
-favmodellibrary

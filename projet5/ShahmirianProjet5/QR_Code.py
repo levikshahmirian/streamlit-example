@@ -18,7 +18,11 @@ import re
 import spacy as sp
 import sklearn
 import functools
-import favmodellibrary
+
+
+# loading the trained model
+pickle_in = open('classifier.pkl', 'rb') 
+classifier = pickle.load(pickle_in)
 
 
 st.set_page_config(page_title="Poser votre question")
