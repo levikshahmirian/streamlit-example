@@ -69,13 +69,14 @@ def clean_text(text):
 def load_apply_model(text):
 
     clean_text = text
-    st.write(text)
+    #st.write(text)
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
-    #x = clean_text(query_title).split(' ') 
+    x = clean_text(text).split(' ') 
     #preds = pickled_model.predict(x)
     #st.write(str(query_title))
+    return x
 
 
 
@@ -99,7 +100,7 @@ if "user_title_text" in st.session_state and len(st.session_state.user_title_tex
 
      ms = st.multiselect(
         label='Pick a number', key="tags_selection",
-        options=title_text.split(" "),
+        options=load_apply_model(title_text)#.split(" "),
         default=st.session_state.default
     )
      
