@@ -86,7 +86,7 @@ def load_apply_model(clean_text):
     st.write(str(query_title))
 
 query_body = st.text_area("Ask a question about the document")
-query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= load_apply_model())
+query_title = st.text_input(label="Topic (or hashtag)", placeholder="Title", on_change= tags_list_change())
 #Développer les contractions"""
 #def Expand_the_Contractions(text):
     #return contractions.fix(text)
