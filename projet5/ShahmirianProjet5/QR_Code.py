@@ -29,7 +29,7 @@ def tags_list_change():
 def lemmatize(text):
 	sp.cli.download("en_core_web_sm")
 	nlp = sp.load("en_core_web_sm")
-	doc = nlp(text.lower())
+	doc = nlp(text)
 	tokens = [token.lemma_ for token in doc if not (token.is_stop or token.is_punct or len(token) == 1 or token.is_digit or token.like_url)]
 	return ' '.join(tokens)
 
