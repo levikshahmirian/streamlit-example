@@ -35,7 +35,7 @@ def lemmatize(text):
 
 def RemoveHTMLTags(text):
 
-    char_remov = ['"', '(', ')','']
+    char_remov = ['"', '(', ')', "'", '[', ']']
     for char in char_remov:
         # replace() "returns" an altered string
         text = text.replace(char, " ")
