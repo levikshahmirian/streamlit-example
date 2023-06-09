@@ -25,7 +25,8 @@ pickle_in = open('classifier.pkl', 'rb')
 classifier = pickle.load(pickle_in)
 
 
-st.set_page_config(page_title="Poser votre question")
+
+st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
 
 def tags_list_change():
