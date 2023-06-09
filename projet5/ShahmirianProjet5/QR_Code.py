@@ -71,7 +71,7 @@ def load_apply_model(text):
 
 
     #x = clean_text(text).split()
-    #preds = pickled_model.predict(x)
+    preds = pickled_model.predict(x)
     #st.write(str(query_title))
     return corpora_Lemm_Title
 
