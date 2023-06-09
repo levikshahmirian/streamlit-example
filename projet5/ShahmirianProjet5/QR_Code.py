@@ -46,7 +46,7 @@ def RemoveHTMLTags(text):
             elif (c == '"' or c == "'") and tag:
                 quote = not quote
             elif not tag:
-                out = out + c
+                out = out + " " + c
 
     return out
 
@@ -73,7 +73,7 @@ def load_apply_model(text):
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
 
-    x = lemmatize(text) 
+    x = clean_text(text) 
     #preds = pickled_model.predict(x)
     #st.write(str(query_title))
     return x
@@ -85,10 +85,6 @@ st.subheader("Poser votre question")
 body_text = st.text_area("Détailler votre question)")
 title_text = st.text_input("Donner un titre à votre question",autocomplete=" ", on_change=tags_list_change(), key="user_title_text")
 
-submit_button = st.button("Enregistrer")
-
-
-
 if "user_title_text" in st.session_state and len(st.session_state.user_title_text) > 0 :
      st.write(title_text)
      if 'options' not in st.session_state:
@@ -97,18 +93,15 @@ if "user_title_text" in st.session_state and len(st.session_state.user_title_tex
      if 'default' not in st.session_state:
         st.session_state.default = []
 
-
      ms = st.multiselect(
         label='Pick a number', key="tags_selection",
         options=load_apply_model(title_text).split(" "),
         default=st.session_state.default
-    )
-     
+    )    
 else:
     st.warning("No suggested categories found. Try a different search.")
 
-
-
+submit_button = st.button("Enregistrer")
 if submit_button :
 	
 	st.write("Votre question est enregistrée")
