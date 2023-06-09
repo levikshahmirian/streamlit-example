@@ -56,8 +56,8 @@ def lowercase(text):
 
 def clean_text(text):
     _steps = [
-    #RemoveHTMLTags,
-    #lowercase,
+    RemoveHTMLTags,
+    lowercase,
     #Expand_the_Contractions,
     lemmatize
     ]
@@ -68,7 +68,7 @@ def clean_text(text):
 
 def load_apply_model(text):
 
-    clean_text = text
+    
     #st.write(text)
     # load model into new model
     pickled_model = pickle.load(open('/app/streamlit-example/projet5/model.pkl', 'rb'))
