@@ -114,6 +114,7 @@ ms = st.sidebar.multiselect(
 if 1 in ms:
     if 2 in st.session_state.options:
         st.session_state.options.remove(2)
+        st.session_state.options.append("Salut")
         st.session_state.default = ms
         st.experimental_rerun()
 
