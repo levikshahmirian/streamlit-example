@@ -81,7 +81,7 @@ if "user_title_text" in st.session_state and len(st.session_state.user_title_tex
         default=st.session_state.default
     )    
 else:
-    st.warning("No suggested categories found. Try a different search.")
+    st.warning("Saisissez votre question et valider pour obtenir des tags.")
 
 submit_button = st.button("Enregistrer")
 if submit_button :
