@@ -60,7 +60,7 @@ def load_apply_model(text):
 
     #x = clean_text(text).split()
     preds = pickled_model.predict(x)
-    st.write(corpora_Lemm_Title)
+    st.write(preds)
     return feature_names_Title
 
 
