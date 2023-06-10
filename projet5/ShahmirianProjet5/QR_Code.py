@@ -53,11 +53,13 @@ def load_apply_model(text):
     pickled_vectorizer = pickle.load(open('projet5/ShahmirianProjet5/vectorizer.pickle', 'rb'))
     
     corpora_Lemm_Title = clean_text(text).split()
-    x = pickled_vectorizer.fit_transform(corpora_Lemm_Title)
+    x = pickled_vectorizer.transform(corpora_Lemm_Title)
     feature_names_Title = pickled_vectorizer.get_feature_names_out()
 
+    #sorted_items=sort_coo(tf_idf_vector.tocoo())
+
     #x = clean_text(text).split()
-    #preds = pickled_model.predict(x)
+    preds = pickled_model.predict(x)
     st.write(corpora_Lemm_Title)
     return feature_names_Title
 
