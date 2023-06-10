@@ -4,11 +4,9 @@ import numpy as np
 import os
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
-
 from keras.models import load_model
 from keras.applications.vgg16 import preprocess_input, decode_predictions
 import pickle
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -19,13 +17,8 @@ import spacy as sp
 import sklearn
 import functools
 
-
-
-
-
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
-
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
@@ -53,27 +46,20 @@ def clean_text(text):
         text=step(text)
     return text   
 
-
 def load_apply_model(text):
     #st.write(text)
     # load model into new model
     pickled_model = pickle.load(open('projet5/ShahmirianProjet5/model.pkl', 'rb'))
     pickled_vectorizer = pickle.load(open('projet5/ShahmirianProjet5/vectorizer.pickle', 'rb'))
     
-
-    # Initialisation du vecteur TF-IDF avec des mots vides 
-    # Création de vocabulaire avec nos corpus
-    # Exclure les 10 premiers documents à des fins de test
     corpora_Lemm_Title = clean_text(text).split()
     x = pickled_vectorizer.fit_transform(corpora_Lemm_Title)
     feature_names_Title = pickled_vectorizer.get_feature_names_out()
-
 
     #x = clean_text(text).split()
     #preds = pickled_model.predict(x)
     st.write(corpora_Lemm_Title)
     return feature_names_Title
-
 
 
 st.subheader("Poser votre question")
