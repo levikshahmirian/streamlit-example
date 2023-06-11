@@ -1,14 +1,11 @@
 
-zipp==3.15.0
-streamlit_elements
-streamlit_autorefresh
-keras
+streamlit==1.23.1
+pillow==9.5.0
+keras==2.12.0
 tensorflow==2.12.0
-nltk
-contractions
-spacy
-scikit-learn
-streamlit
-pandas
-numpy==1.24
-keras
+nltk==3.8.1
+contractions==0.1.73
+spacy==3.5.3
+scikit-learn==1.2.2
+pandas==2.0.2
+numpy==1.23.1
