@@ -60,6 +60,13 @@ def load_apply_model(text):
 
     #x = clean_text(text).split()
     preds = pickled_model.predict(x)
+
+    # Reconstruction des mots-clés prédits
+    predicted_labels = pickled_vectorizer.inverse_transform(preds)
+
+    # Affichage des mots-clés prédits
+    st.write("Mots-clés prédits :", predicted_labels)
+
     st.write(preds)
     return feature_names_Title
 
