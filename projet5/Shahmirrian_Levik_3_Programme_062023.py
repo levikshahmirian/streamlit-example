@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import os
 import time
-timestr = time.strftime("%Y%m%d-%H%M%S")
+
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
