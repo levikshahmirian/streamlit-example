@@ -17,7 +17,7 @@ import functools
 
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
-
+#browser.gatherUsageStats = False
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
 	sp.cli.download("en_core_web_sm")
