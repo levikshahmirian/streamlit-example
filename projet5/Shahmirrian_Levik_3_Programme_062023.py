@@ -4,15 +4,13 @@ import numpy as np
 import os
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
-from keras.models import load_model
-from keras.applications.vgg16 import preprocess_input, decode_predictions
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import contractions
 import string
-import re
+
 import spacy as sp
 import sklearn
 import functools
