@@ -59,7 +59,7 @@ def load_apply_model(text):
     #x = clean_text(text).split()
     preds = pickled_model.predict(x)
 
-    predicted_labels = pickled_vectorizer.inverse_transform(preds)
+    
 
     st.write(preds)
     return feature_names_Title
