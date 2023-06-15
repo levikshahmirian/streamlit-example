@@ -59,7 +59,7 @@ def load_apply_model(text):
 
     
 
-    st.write(preds)
+    st.write(preds.tolist())
     return feature_names_Title
 
 
