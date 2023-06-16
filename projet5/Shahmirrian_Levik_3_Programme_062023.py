@@ -13,8 +13,6 @@ import spacy as sp
 import sklearn
 import functools
 
-import base64
-import io
 import zipfile
 import filetype
 
@@ -32,12 +30,12 @@ if model_upload  is not None:
 	with zipfile.ZipFile(model_upload,"r") as z:
                 z.extractall(".")
 	pickled_model= pickle.load(open('model.pkl', 'rb'))
-	st.sidebar.write("Ca Marché model")
+	st.sidebar.write("model chargé")
 
 if vectorizer_upload is not None:
     #fix_image(upload=vectorizer_upload)
 	pickled_vectorizer= pickle.loads(vectorizer_upload.read())
-	st.sidebar.write("Ca Marché vectorizer")
+	st.sidebar.write("vectorizer chargé")
 
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
