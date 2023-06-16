@@ -26,7 +26,7 @@ my_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle", 
 
 if my_upload is not None:
     #fix_image(upload=my_upload)
-	if file.type == "application/zip":
+	if model.type == "application/zip":
 		with zipfile.ZipFile(file, "r") as z:
 	    		z.extractall(".")
 
