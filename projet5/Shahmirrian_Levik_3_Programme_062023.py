@@ -18,7 +18,8 @@ import filetype
 
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
-
+with zipfile.ZipFile(projet5/model.zip,"r") as z:
+	z.extractall(".")
 #st.sidebar.write("## Charger le modèle :gear:")
 #model_upload = st.sidebar.file_uploader("Télécharger une image", type=["zip"])
 
@@ -68,11 +69,10 @@ def load_apply_model(text):
 	#st.write(text)
 	# load model into new model
 	
-	with zipfile.ZipFile(projet5/model.zip,"r") as z:
-	        z.extractall(".")
+
 	
-	pickled_model = pickle.load(open('projet5/model.pkl', 'rb'))
-	pickled_vectorizer = pickle.load(open('projet5/vectorizer.pckle', 'rb'))
+	pickled_model = pickle.load(open("projet5/model.pkl", 'rb'))
+	pickled_vectorizer = pickle.load(open('projet5/vectorizer.pickle', 'rb'))
 	
 	corpora_Lemm_Title = clean_text(text).split()
 	x = pickled_vectorizer.transform(corpora_Lemm_Title)
