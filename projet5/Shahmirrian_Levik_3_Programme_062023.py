@@ -80,12 +80,12 @@ def load_apply_model(text):
     #sorted_items=sort_coo(tf_idf_vector.tocoo())
     
     #x = clean_text(text).split()
-    #preds = pickled_model.predict(x)
+    preds = pickled_model.predict(x)
 
     
 
-    st.write(feature_names_Title.tolist())
-    return feature_names_Title
+    st.write(preds.tolist())
+    return preds
 
 
 st.subheader("Poser votre question")
