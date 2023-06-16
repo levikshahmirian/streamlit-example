@@ -25,16 +25,16 @@ st.sidebar.write("## Charger le modèle :gear:")
 model_upload = st.sidebar.file_uploader("Télécharger une image", type=[ "pkl", "zip"])
 
 st.sidebar.write("## Charger le vectorizer :gear:")
-mvectorizer_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle",  "zip"])
+vectorizer_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle",  "zip"])
 
 if model_upload  is not None:
     #fix_image(upload=model_upload)
-	
+	pickled_model= pickle.loads(model_upload.read())
 	st.sidebar.write("Ca Marché model")
 
-if mvectorizer_upload is not None:
-    #fix_image(upload=mvectorizer_upload)
-	
+if vectorizer_upload is not None:
+    #fix_image(upload=vectorizer_upload)
+	pickled_vectorizer= pickle.loads(vectorizer_upload.read())
 	st.sidebar.write("Ca Marché vectorizer")
 
 
@@ -68,8 +68,8 @@ def load_apply_model(text):
     #st.write(text)
     # load model into new model
 
-    pickled_model = pickle.load(open('model_upload', 'rb'))
-    pickled_vectorizer = pickle.load(open('mvectorizer_upload', 'rb'))
+    #pickled_model = pickle.load(open('model_upload', 'rb'))
+    #pickled_vectorizer = pickle.load(open('mvectorizer_upload', 'rb'))
     
     corpora_Lemm_Title = clean_text(text).split()
     x = pickled_vectorizer.transform(corpora_Lemm_Title)
