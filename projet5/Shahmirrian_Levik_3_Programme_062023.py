@@ -84,8 +84,8 @@ def load_apply_model(text):
 
     
 
-    st.write(preds[0].split())
-    return preds
+    #st.write(preds[0].split())
+    return preds[0].split()
 
 
 st.subheader("Poser votre question")
