@@ -22,14 +22,16 @@ st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
 
 st.sidebar.write("## Charger le modèle :gear:")
-model_upload = st.sidebar.file_uploader("Télécharger une image", type=[ "pkl", "zip"])
+model_upload = st.sidebar.file_uploader("Télécharger une image", type=["zip"])
 
 st.sidebar.write("## Charger le vectorizer :gear:")
 vectorizer_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle",  "zip"])
 
 if model_upload  is not None:
     #fix_image(upload=model_upload)
-	pickled_model= pickle.loads(model_upload.read())
+	with zipfile.ZipFile(model_upload,"r") as z:
+                z.extractall(".")
+	pickled_model= pickle.load(open('model.pkl', 'rb'))
 	st.sidebar.write("Ca Marché model")
 
 if vectorizer_upload is not None:
