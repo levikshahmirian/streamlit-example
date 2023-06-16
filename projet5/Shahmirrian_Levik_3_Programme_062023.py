@@ -45,7 +45,7 @@ def clean_text(text):
 def load_apply_model(text):
     #st.write(text)
     # load model into new model
-    pickled_model = pickle.load(open('projet5/model_projet5.pkl', 'rb'))
+    pickled_model = pickle.load(open('projet5/model.pkl', 'rb'))
     pickled_vectorizer = pickle.load(open('projet5/vectorizer.pickle', 'rb'))
     
     corpora_Lemm_Title = clean_text(text).split()
