@@ -18,7 +18,7 @@ import filetype
 
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
-with zipfile.ZipFile(projet5/model.zip,"r") as z:
+with zipfile.ZipFile('projet5/model.zip',"r") as z:
 	z.extractall(".")
 #st.sidebar.write("## Charger le modèle :gear:")
 #model_upload = st.sidebar.file_uploader("Télécharger une image", type=["zip"])
