@@ -13,6 +13,11 @@ import spacy as sp
 import sklearn
 import functools
 
+import base64
+import io
+import zipfile
+import filetype
+
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
 
@@ -45,6 +50,8 @@ def clean_text(text):
 def load_apply_model(text):
     #st.write(text)
     # load model into new model
+    with zipfile.ZipFile('projet5/model.zip', "r") as z:
+        z.extractall(".")
     pickled_model = pickle.load(open('projet5/model.pkl', 'rb'))
     pickled_vectorizer = pickle.load(open('projet5/vectorizer.pickle', 'rb'))
     
