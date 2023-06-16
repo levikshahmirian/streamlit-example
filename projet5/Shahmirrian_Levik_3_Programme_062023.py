@@ -80,11 +80,11 @@ def load_apply_model(text):
     #sorted_items=sort_coo(tf_idf_vector.tocoo())
     
     #x = clean_text(text).split()
-    preds = pickled_model.predict(x)
+    preds = pickled_model.predict(x).tolist()
 
     
 
-    st.write(preds.tolist())
+    st.write(preds[0].split())
     return preds
 
 
