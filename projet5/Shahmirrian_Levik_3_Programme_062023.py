@@ -19,23 +19,23 @@ import filetype
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
 
-st.sidebar.write("## Charger le modèle :gear:")
-model_upload = st.sidebar.file_uploader("Télécharger une image", type=["zip"])
+#st.sidebar.write("## Charger le modèle :gear:")
+#model_upload = st.sidebar.file_uploader("Télécharger une image", type=["zip"])
 
-st.sidebar.write("## Charger le vectorizer :gear:")
-vectorizer_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle",  "zip"])
+#st.sidebar.write("## Charger le vectorizer :gear:")
+#vectorizer_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle",  "zip"])
 
-if model_upload  is not None:
+#if model_upload  is not None:
     #fix_image(upload=model_upload)
-	with zipfile.ZipFile(model_upload,"r") as z:
-                z.extractall(".")
-	pickled_model= pickle.load(open('model.pkl', 'rb'))
-	st.sidebar.write("model chargé")
+#	with zipfile.ZipFile(model_upload,"r") as z:
+ #               z.extractall(".")
+#	pickled_model= pickle.load(open('model.pkl', 'rb'))
+#	st.sidebar.write("model chargé")
 
-if vectorizer_upload is not None:
+#if vectorizer_upload is not None:
     #fix_image(upload=vectorizer_upload)
-	pickled_vectorizer= pickle.loads(vectorizer_upload.read())
-	st.sidebar.write("vectorizer chargé")
+#	pickled_vectorizer= pickle.loads(vectorizer_upload.read())
+#	st.sidebar.write("vectorizer chargé")
 
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
@@ -65,25 +65,28 @@ def clean_text(text):
     return text   
 
 def load_apply_model(text):
-    #st.write(text)
-    # load model into new model
-
-    #pickled_model = pickle.load(open('model_upload', 'rb'))
-    #pickled_vectorizer = pickle.load(open('mvectorizer_upload', 'rb'))
-    
-    corpora_Lemm_Title = clean_text(text).split()
-    x = pickled_vectorizer.transform(corpora_Lemm_Title)
-    feature_names_Title = pickled_vectorizer.get_feature_names_out()
-
-    #sorted_items=sort_coo(tf_idf_vector.tocoo())
-    
-    #x = clean_text(text).split()
-    preds = pickled_model.predict(x).tolist()
-
-    
-
-    #st.write(preds[0].split())
-    return preds[0].split()
+	#st.write(text)
+	# load model into new model
+	
+	with zipfile.ZipFile(projet5/model.zip,"r") as z:
+	        z.extractall(".")
+	
+	pickled_model = pickle.load(open('projet5/model.pkl', 'rb'))
+	pickled_vectorizer = pickle.load(open('projet5/vectorizer.pckle', 'rb'))
+	
+	corpora_Lemm_Title = clean_text(text).split()
+	x = pickled_vectorizer.transform(corpora_Lemm_Title)
+	feature_names_Title = pickled_vectorizer.get_feature_names_out()
+	
+	#sorted_items=sort_coo(tf_idf_vector.tocoo())
+	
+	#x = clean_text(text).split()
+	preds = pickled_model.predict(x).tolist()
+	
+	
+	
+	#st.write(preds[0].split())
+	return preds[0].split()
 
 
 st.subheader("Poser votre question")
