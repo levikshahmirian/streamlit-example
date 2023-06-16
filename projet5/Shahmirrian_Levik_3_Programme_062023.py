@@ -21,6 +21,16 @@ import filetype
 st.set_page_config(page_title="Poser votre question",)
 init_options = [" "]
 
+st.sidebar.write("## Charger le modèle :gear:")
+my_upload = st.sidebar.file_uploader("Télécharger une image", type=["png", "jpg", "jpeg"])
+
+if my_upload is not None:
+    #fix_image(upload=my_upload)
+    if file.type == "application/zip":
+	with zipfile.ZipFile(file, "r") as z:
+	    z.extractall(".")
+
+
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
 def lemmatize(text):
 	sp.cli.download("en_core_web_sm")
