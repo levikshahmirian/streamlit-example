@@ -68,8 +68,8 @@ def load_apply_model(text):
     #st.write(text)
     # load model into new model
 
-    pickled_model = pickle.load(open('projet5/model.pkl', 'rb'))
-    pickled_vectorizer = pickle.load(open('projet5/vectorizer.pickle', 'rb'))
+    pickled_model = pickle.load(open('model_upload', 'rb'))
+    pickled_vectorizer = pickle.load(open('mvectorizer_upload', 'rb'))
     
     corpora_Lemm_Title = clean_text(text).split()
     x = pickled_vectorizer.transform(corpora_Lemm_Title)
