@@ -26,9 +26,8 @@ my_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle", 
 
 if my_upload is not None:
     #fix_image(upload=my_upload)
-	if model.type == "application/zip":
-		with zipfile.ZipFile(file, "r") as z:
-	    		z.extractall(".")
+	if model.pkl : 
+		st.sidebar.write("Ca Marché")
 
 
 #applique la lemmatization et enlève les StopWords, des mots de longeurs 1, et les chiffres """
