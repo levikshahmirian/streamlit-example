@@ -27,12 +27,12 @@ model_upload = st.sidebar.file_uploader("Télécharger une image", type=[ "pkl",
 st.sidebar.write("## Charger le vectorizer :gear:")
 mvectorizer_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle",  "zip"])
 
-if my_upload is not None:
+if model_upload  is not None:
     #fix_image(upload=my_upload)
 	
 	st.sidebar.write("Ca Marché model")
 
-if my_upload is not None:
+if mvectorizer_upload is not None:
     #fix_image(upload=my_upload)
 	
 	st.sidebar.write("Ca Marché vectorizer")
