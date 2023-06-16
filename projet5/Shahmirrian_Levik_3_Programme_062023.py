@@ -24,6 +24,9 @@ init_options = [" "]
 st.sidebar.write("## Charger le modèle :gear:")
 my_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle", "pkl", "zip"])
 
+st.sidebar.write("## Charger le vectorizer :gear:")
+my_upload = st.sidebar.file_uploader("Télécharger une image", type=["pickle", "pkl", "zip"])
+
 if my_upload is not None:
     #fix_image(upload=my_upload)
 	
