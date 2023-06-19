@@ -37,8 +37,8 @@ MarkupSafe==2.1.1
 mpmath==1.2.1
 multidict==6.0.2
 networkx==2.8.8
-numba
-numpy
+numba==0.57.0
+numpy==1.23.5
 onnxruntime==1.14.1
 opencv-python-headless==4.6.0.66
 packaging==21.3
@@ -87,7 +87,6 @@ validators==0.20.0
 watchdog==2.1.9
 yarl==1.8.1
 zipp==3.10.0
-joblib==1.1.1
 torch
 torchvision
 keras
