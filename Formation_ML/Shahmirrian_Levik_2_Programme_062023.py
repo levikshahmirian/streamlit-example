@@ -1,5 +1,5 @@
 import streamlit as st
-from rembg.bg import remove
+#from rembg.bg import remove
 from PIL import Image
 from io import BytesIO
 import base64
@@ -75,7 +75,7 @@ if my_upload is not None:
     
     load_model(img)
 
-    fix_image(my_upload)
+    #fix_image(my_upload)
 
 
 
