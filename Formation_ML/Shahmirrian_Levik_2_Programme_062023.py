@@ -75,7 +75,7 @@ if my_upload is not None:
     
     load_model(img)
 
-    #fix_image(my_upload)
+    fix_image(my_upload)
 
 
 
