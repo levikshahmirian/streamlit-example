@@ -16,7 +16,7 @@ st.set_page_config(layout="wide", page_title="Image Background Remover")
 
 st.write("## Classez des images à l'aide d'algorithmes de Deep Learning")
 st.write(
-    ":dog:Téléchargez une image de chien pour découvrir sa race. Des images de qualité complète peuvent être téléchargées à partir de la barre latérale. Special thanks to the [rembg library](https://github.com/danielgatis/rembg) :grin:"
+    ":dog:Téléchargez une image de chien pour découvrir sa race. "
 )
 st.sidebar.write("## Charger et télécharger :gear:")
 # Download the fixed image
