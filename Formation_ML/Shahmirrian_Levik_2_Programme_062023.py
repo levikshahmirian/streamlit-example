@@ -35,11 +35,11 @@ def fix_image(upload):
     col1.write(" ")
     col1.image(image)
 
-    fixed = remove(image)
+    #fixed = remove(image)
     #col2.write("la race:wrench:")
-    col2.image(fixed)
-    st.sidebar.markdown("\n")
-    st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
+    #col2.image(fixed)
+    #st.sidebar.markdown("\n")
+    #st.sidebar.download_button("Télécharger l'image modiffiée", convert_image(fixed), "fixed.png", "image/png")
 
 def write_predict(prob,imagenet_class_name):
     col2.write("la race:wrench:  "+imagenet_class_name)
