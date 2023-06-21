@@ -84,7 +84,7 @@ def load_apply_model(text):
 	
 	
 	
-	#st.write(preds[0].split())
+	st.write(preds[0].split())
 	return preds[0].split()
 
 
